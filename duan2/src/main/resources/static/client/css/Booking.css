@@ -1,0 +1,816 @@
+
+/* Css body */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(247,249,250,1.00);
+}
+
+/* Css Header */
+
+.header {
+    width: 100%;
+    position: relative;
+}
+.header_nav {
+    background-color: #0a1d35;
+    width: 100%;
+    box-shadow: 0px 1px 1px #0000001f;
+}
+.nav_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+}
+.container {
+    max-width: 1300px !important;
+}
+.nav_logo_menu {
+    display: flex;
+    align-items: center;
+}
+.nav_logo {
+    max-width: 120px;
+}
+.nav_logo img {
+    width: 80%;
+}
+img {
+    max-width: 100%;
+}
+.nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.nav_menu .menu_list {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: #666666;
+}
+.menu_list .list_item {
+    padding: 32px 12px;
+    position: relative;
+}
+.menu_list .list_item .sub_menu_e:nth-child(2) ul {
+    width: 50%;
+}
+.menu_mobile {
+    display: none;
+    color: #C7B39A;
+    font-size: 30px;
+}
+.nav_button a {
+    font-family: Arial;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.sub_menu {
+    display: none;
+    visibility: hidden;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 1px 4px 0 rgb(225 225 225 / 60%);
+    top: 100%;
+    min-width: 245px;
+    position: absolute;
+    background: #ffffff;
+    padding: 9px 0;
+    list-style-type: none;
+    transition: all 0.5s ease;
+    z-index: 50;
+}
+
+.sub_menu-item {
+    padding: 6px 18px;
+    transition: all 0.8s ease;
+}
+
+.sub_menu-item a {
+    font-size: 14px;
+}
+
+.sub_menu-item:hover {
+    background-color: #C7B39A;
+    transition: all 0.3s ease;
+}
+
+.sub_menu-item:hover a {
+    color: #ffffff;
+}
+
+.list_item:hover .sub_menu,
+.list_item:hover .sub_menu_e {
+    display:block;
+    visibility: visible;
+    transition: all 0.5s ease;
+
+}
+
+.sub_menu_e {
+    display:none;
+    visibility: hidden;
+    padding: 0;
+    top: 85%;
+    width: 70%;
+    background: #deb159;
+    left: 15%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border: 1px solid rgba(236, 236, 236, 0.938);
+}
+
+.menu_list .list_item a {
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: Arial;
+    color: #555;
+    font-size: 15px;
+}
+.nav_button a {
+    font-family: Arial;
+}
+.nav_button a button {
+    text-transform: uppercase;
+    border: none;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    background-color:#ccb299;
+    color: #ffffff;
+    transition: all .5s ease;
+    border: 1px solid #ccb299;
+    font-weight: 600;
+}
+.nav_button a button:hover{
+    background-color:  #DEB159;
+}
+.nav_button a button:focus {
+    outline: none;
+}
+
+/* Css Banner */
+
+.banner {
+    width: 100%;
+    position: relative;
+}
+.header_banner img {
+    width: 100%;
+    max-width: 100%;
+    height: 82vh;
+}
+.header_bgr {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    background-color: #1312125c;
+    z-index: 1;
+}
+
+/* Css nav */
+.navcontent {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center; /* Căn giữa nội dung trong class "navcontent" */
+}
+
+.navcontent nav {
+    /* display: inline-block; Hiển thị là một khối nội dung và căn giữa theo chiều ngang */
+    text-align: left; /* Đặt lại căn giữa chiều ngang cho nội dung của "nav" */
+}
+
+.navcontent h3 {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.navcontent h6{
+    color: dimgray;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+/* Css section content*/
+.contentweb{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center; /* Căn giữa nội dung trong class "contentweb" */
+}
+
+.sectioncontent form{
+    height: 120px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.sectioncontent form img,
+.sectioncontent form h5 {
+    display: inline-block;
+    vertical-align: middle; /* Để căn giữa theo chiều dọc nếu hình và văn bản có chiều cao khác nhau */
+}
+
+/* Css section info */
+.sectioninfo{
+    height: 380px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.sectioninfo h4{
+    margin-right: 310px;
+    padding-top: 20px;
+}
+
+.sectioninfo h6{
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: left;
+    color: dimgray;
+    font-size: 15px;
+}
+
+.labelname{
+    margin-right: 620px;
+}
+
+.inputname{
+    width: 90%;
+    height: 37px;
+    border-radius: 7px;
+    border: 1px solid rgb(147, 139, 155);
+}
+
+.labelnote{
+    font-size: 12px;
+    margin-right: 340px;
+}
+
+.rowinfo {
+    display: flex;
+}
+
+.mail,
+.phone {
+    margin-right: 20px; /* Để tạo khoảng cách giữa hai div */
+}
+
+.mail label {
+    margin-right: 225px;
+}
+
+.mail input {
+    width: 320px;
+    height: 37px;
+    border-radius: 7px;
+    border: 1px solid rgb(147, 139, 155);
+    margin-left: 40px;
+}
+
+.mail p{
+    font-size: 12px;
+    margin-right: 50px;
+}
+
+.phone label{
+    margin-right: 175px;
+}
+
+.phone input {
+    width: 320px;
+    height: 37px;
+    border-radius: 7px;
+    border: 1px solid rgb(147, 139, 155);
+    margin-left: 40px;
+}
+
+.phone p{
+    font-size: 12px;
+    margin-right: 50px;
+}
+
+/* Css section service */
+.sectionservice{
+    height: 310px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.sectionservice h4{
+    margin-right: 400px;
+    padding-top: 20px;
+}
+
+.sectionservice h6{
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: left;
+    color: dimgray;
+    font-size: 15px;
+}
+
+.rowservice {
+    display: flex;
+    margin-left: 40px;
+}
+
+.rowservice div {
+    margin-right: 100px; /* Để tạo khoảng cách giữa hai div, bạn có thể điều chỉnh giá trị này theo ý muốn */
+}
+
+.rowservice div:last-child {
+    flex-grow: 1;
+}
+
+.rowservice input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.rowservice label{
+    margin-left: 10px;
+}
+
+/* Css section pay */
+.sectionpay{
+    margin-bottom: 20px;
+    height: 460px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.sectionpay h4{
+    padding-top: 20px;
+    margin-right: 580px;
+}
+
+.textCode p{
+    color: rgb(1, 148, 243);
+    margin-right: 260px;
+}
+
+.sectionpay p img{
+    height: 16px;
+    margin-left: 20px;
+    margin-bottom: 3px;
+}
+
+
+
+
+.priceRoom{
+    display: flex;
+}
+
+.priceRoom b{
+    padding-left: 285px;
+}
+
+.rowRoom h5{
+    margin-right: 165px;
+}
+
+.rowRoom label{
+    margin-left: 40px;
+    color: dimgray;
+    font-size: 15px;
+}
+
+.taxRoom{
+    display: flex;
+}
+
+.taxRoom h5{
+    margin-left: 40px;
+}
+
+.taxRoom b {
+    margin-left: 490px;
+}
+
+.modal-content{
+    width: 580px;
+}
+
+.modalVoucher{
+    margin-left: 580px;
+    margin-top: 10px;
+}
+
+.contentVoucher {
+    display: flex;
+    border-radius: 10px;
+    background-color: wheat;
+    height: 60px;
+}
+
+.contentVoucher h6{
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.contentVoucher input{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid rgb(243, 227, 198);
+    height: 40px;
+    padding-left: 20px;
+}
+
+.contentVoucher button{
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(255, 94, 31);
+    color: white;
+    border: none;
+}
+
+.voucherCt p{
+    width: 250px;
+    margin-right: 20px;
+}
+
+.timeVoucher{
+    padding-top: 10px;
+    padding-left: 10px;
+    height: 50px;
+    
+}
+
+.timeVoucher h6{
+    margin-left: 10px;
+    font-size: 10px;
+    color: rgb(255, 94, 31);
+}
+
+.timeVoucher b{
+    font-size: 15px;
+    color: rgb(255, 94, 31);
+}
+
+
+.scrollable-container {
+    width: 100%; /* Độ rộng của container */
+    height: 550px; /* Chiều cao của container */
+    overflow: auto; /* Cho phép thanh cuộn khi nội dung vượt quá kích thước của container */
+    border: 1px solid #ccc; /* Đường viền */
+    padding: 10px; /* Khoảng cách nội dung từ biên của container */
+}
+
+.scrollable-container div{
+    display: flex;
+    
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 530px;
+}
+
+.scrollable-container img{
+    width: 100px;
+    border-radius: 5px 0 0 5px;
+}
+
+.scrollable-container p{
+    padding-top: 35px;
+    margin-left: 10px;
+}
+
+.scrollable-container input{
+    margin-left: 100px;
+    transform: scale(1.5);
+}
+
+.totalpriceRoom h5{
+    margin-right: 500px;
+}
+
+.totalpriceRoom b {
+    color: rgb(255, 94, 31);
+}
+
+.notePay p{
+    color: rgb(1, 148, 243);
+}
+
+.notePay p img{
+    margin-bottom: 5px;
+}
+
+.btnPay button{
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 94, 31);
+    color: white;
+    font-size: 20px;
+}
+
+/* Css aside */
+
+.formAside{
+    height: 730px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.contentTop b{
+    background-color: rgb(11, 146, 224);
+    border-radius: 10px 10px 0 0;
+    font-size: 13px;
+    display: block;
+    max-width: 100%;
+    color: white;
+
+}
+
+.contentTop h5{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.contentTop h6{
+    text-align: left;
+    margin-left: 35px;
+}
+
+.contentTop p{
+    text-align: left;
+    margin-left: 35px;
+    background-color: rgb(144, 210, 188);
+    width: 215px;
+    border-radius: 8px;
+    font-size: 12px;
+    padding-left: 7px;
+}
+
+.timeForm{
+    display: flex;
+}
+
+.form1{
+    border: 1px solid grey;
+    width: 130px;
+    height: 80px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.form1 h6{
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+.form1 b{
+    font-size: 12px;
+}
+
+.form1 p{
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.form2{
+    border: 1px solid grey;
+    width: 130px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.form2 h6{
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+.form2 b{
+    font-size: 12px;
+}
+
+.form2 p{
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.horizontal-line {
+    display: flex;
+    align-items: center;
+    width: 60px; /* Đặt chiều dài của đoạn thẳng */
+    margin: 20px auto; /* Căn giữa và đặt khoảng cách từ trên xuống */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dot {
+    width: 7px; /* Đặt kích thước của dấu chấm */
+    height: 7px;
+    background-color: grey; /* Đặt màu sắc của dấu chấm */
+    border-radius: 50%; /* Làm cho dấu chấm thành hình tròn */
+}
+
+.line {
+    flex: 1; /* Dùng hết không gian còn lại */
+    height: 1px; /* Đặt chiều rộng của đoạn thẳng */
+    background-color: grey; /* Đặt màu của đoạn thẳng */
+}
+
+.textInfo h5,
+.textInfo h6{
+    text-align: left;
+    margin-left: 20px;
+    font-size: 15px;
+}
+.textInfo h6{
+    color: gray;
+}
+
+.textPay {
+    display: flex;
+}
+
+.textPay .textRoom{
+    margin-left: 20px
+
+}
+
+.textRoom h5{
+    color: #000;
+}
+
+.textRoom p{
+    color: gray;
+    font-size: 15px;
+}
+
+.textPay .textMoney{
+    margin-left: 80px;
+    margin-right: 20px;
+}
+
+.textMoney h5{
+    color: rgb(255, 94, 31);
+}
+
+.textMoney h6{
+    color: rgb(0, 135, 90);
+    font-size: 12px;
+}
+
+.textPolicy{
+    height: 180px;
+    border: 1px solid none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.textPolicy h5,
+.textPolicy h4{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.textPolicy h4{
+    padding-top: 20px;
+    font-size: 17px;
+}
+
+.textPolicy h6{
+    background-color: rgba(247,249,250,1.00);
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 13px;
+    width: 330px;
+    height: 40px;
+    padding-left: 20px;
+    padding-top: 15px;
+    border-radius: 10px;
+}
+
+.textPolicy h5{
+    margin-top: 15px;
+    margin-right: 20px;
+    font-size: 15px;
+    color: gray;
+
+}
+
+.textPolicy h5 img{
+    height: 15px;
+    width: 15px;
+    margin-bottom: 3px;
+
+}
+
+/* Css footer */
+.main_footer {
+    padding: 70px 0 50px;
+    background-color: #1d1d1d;
+    color: #fbfbfbcc;
+}
+.container {
+    max-width: 1300px !important;
+}
+.footer_logo {
+    text-align: center;
+}
+.footer_logo img {
+    width: 50%;
+    object-fit: cover;
+    margin-right: 200px;
+}
+img {
+    max-width: 100%;
+}
+.footer_info {
+    margin-bottom: 20px;
+}
+.main_footer div h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-family: Arial;
+    font-weight: 600;
+}
+.contact_address, .quick_list {
+    list-style-type: none;
+    padding: 0;
+}
+.contact_address-item {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+.contact_address-item i {
+    margin: 0 5px 0 0;
+}
+.quick_list-item a, .contact_address-item a {
+    color: #fbfbfbcc;
+}
+.contact_address, .quick_list {
+    list-style-type: none;
+    padding: 0;
+}
+.quick_list-item {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+.input_email {
+    display: flex;
+    background-color: #ffffff;
+    align-items: center;
+}
+.input_email input {
+    background-color: #fff;
+    border-radius: 2px;
+    color: #666666;
+    padding: 13px 50px 13px 15px;
+    width: 150%;
+    border: none;
+}
+
+.button_signUp {
+    appearance: none;
+    background-color: rgb(255, 94, 31);
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.footer_copyright {
+    background-color: #000000;
+    color: rgb(255 255 255);
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 15px;
+}

@@ -1,0 +1,158 @@
+.root {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 66px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("/public/static/night.png");
+    background-size: cover;
+    transform: translateY(calc(100% + 66px));
+    opacity: 0;
+    transition: all .5s linear;
+}
+
+.root .closeBottom {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
+
+.root.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.bottomContainer {
+    width: 70%;
+}
+
+.tabList {
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    overflow: hidden;
+}
+
+.tabList > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    padding: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.playerContainer {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.playerCount {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 16px 32px;
+}
+
+.playerCount * {
+    color: white;
+}
+
+.playerCount path {
+    stroke: white;
+}
+
+.tablePlayer {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.tableTitle {
+    margin: 0 32px;
+    display: flex;
+    padding: 8px 0;
+}
+
+.tableTitle > * {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.player > *:nth-child(1),
+.tableTitle > *:nth-child(1) {
+    width: 12%;
+}
+
+.player > *:nth-child(2),
+.tableTitle > *:nth-child(2) {
+    width: 18%
+}
+
+.player > *:nth-child(3),
+.tableTitle > *:nth-child(3) {
+    width: 45%
+}
+
+.player > *:nth-child(4),
+.tableTitle > *:nth-child(4) {
+    width: 18%
+}
+
+.player > *:nth-child(5),
+.tableTitle > *:nth-child(5) {
+    width: 7%
+}
+
+.players {
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.player {
+    color: white;
+}
+
+.player {
+    display: flex;
+    margin: 0 32px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+}
+
+.progress > div,
+.player > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.player img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.progress {
+
+}
+
+.point {
+
+}

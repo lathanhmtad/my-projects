@@ -1,0 +1,85 @@
+.root {
+    min-height: 50vh;
+}
+
+.container {
+    margin-top: 32px;
+    width: 1320px;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    column-gap: 1.25%;
+    row-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.container > * {
+    width: 19%;
+}
+
+.answerTime {
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 3px 6px 1px rgba(0, 0, 0, .05);
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 216px;
+    text-decoration: none;
+    color: black;
+}
+
+.answerTime:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), -4px 6px 8px 4px rgba(0, 0, 0, .05), 4px 6px 8px 4px rgba(0, 0, 0, .05);
+}
+
+.top {
+
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    overflow: hidden;
+}
+
+.imageContainer img {
+    width: 100%;
+    height: auto;
+}
+
+.label {
+    background: #f2f2f2;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+    border: 1px solid #e6e6e6;
+    font-size: 12px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    position: absolute;
+    top: 70px;
+    left: 16px;
+}
+
+.title {
+    font-weight: 500;
+    margin-top: 8px;
+    margin-bottom: 32px;
+    padding: 0 8px;
+}
+
+.accuracy {
+    background-color: #f14d76;
+    margin: 0px 12px 12px 12px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    padding-left: 16px;
+}

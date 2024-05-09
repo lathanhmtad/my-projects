@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/fake_store_api?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+  jackson:
+    date-format: dd-MM-yyyy HH:mm:ss
+    time-zone: GMT+7
+
+# app properties
+com:
+  app:
+    ecommerce:
+      cloudinary:
+        name: dixswfj8d
+        apiKey: 876943471796471
+        apiSecret: XXlwrvw541Qmp83wIgDjxZpIoNQ
+        rootFolder: fake-store-api-images
+      jwt:
+        jwtSecret: ======================jwt=spring===========================
+        jwtExpiration: 10 hour
+        jwtRefreshExpiration: 15 hour

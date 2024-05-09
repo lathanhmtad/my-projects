@@ -1,0 +1,143 @@
+.root {
+    background-color: var(--main-bg);
+    padding: 16px;
+}
+
+.topBlock {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topHeader {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.topBody {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 8px 16px 12px;
+}
+
+.liveType {
+    font-size: 12px;
+    padding: 8px 8px;
+    background-color: #f2f2f2;
+    font-weight: 600;
+    width: 100px;
+    box-sizing: border-box;
+    text-align: left;
+    border-left: 4px solid #CAD2DC;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    background-color: rgba(123, 107, 234, 0.2);
+    color: #7B6BEA;
+    border-left-color: #7B6BEA;
+}
+
+.topBody h3 {
+    font-weight: 700;
+    margin: 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    column-gap: 12px;
+}
+
+.title > *:last-child {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.title > *:last-child * {
+    color: #00C985;
+    font-size: 12px;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    margin-bottom: 12px;
+}
+
+.time * {
+    font-size: 12px;
+}
+
+.buttonGroup {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.topRight {
+}
+
+.topRight > div {
+    display: flex;
+    column-gap: 24px;
+}
+
+.topRight > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4px;
+}
+
+.topRight > div > div > span {
+    font-size: 12px;
+}
+
+.topRight > div > div > div * {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.topRight > div > div > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background-color: var(--main-bg);
+}
+
+.topFooter {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F9F9F9;
+    padding: 8px 16px;
+}
+
+.tabList {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+}
+
+.actionList {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}

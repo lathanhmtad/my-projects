@@ -1,0 +1,75 @@
+import React, { useState } from 'react';
+
+import { Button } from 'antd';
+import { SelectOutlined } from '@ant-design/icons';
+
+import ClientLogin from '../../components/ClientLogin';
+import ClientRegister from '../../components/ClientRegister';
+
+import './Auth.scss';
+
+const ClientAuth = () => {
+  const [isPanelRightActive, setIsPanelRightActive] = useState(false);
+
+  const handleClickSignIn = () => {
+    setIsPanelRightActive(false);
+  };
+
+  const handleClickSignUp = () => {
+    setIsPanelRightActive(true);
+  };
+
+  return (
+    <div className="auth-page">
+      <div className="auth-page-wrapper">
+        <div
+          className={`auth-container ${isPanelRightActive ? 'right-panel-active' : ''}`}
+        >
+          <div className="form-container sign-up-container">
+            <ClientRegister/>
+          </div>
+          <div className="form-container sign-in-container">
+            <ClientLogin/>
+          </div>
+
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-panel overlay-left bg-gradient">
+                <h1>Welcome!</h1>
+                <p>
+                  If you already have an account with us let's sign in to
+                  see something awesome!
+                </p>
+                <Button
+                  shape="round"
+                  onClick={handleClickSignIn}
+                  icon={<SelectOutlined/>}
+                  size="large"
+                >
+                  Use your exist account
+                </Button>
+              </div>
+              <div className="overlay-panel overlay-right bg-gradient">
+                <h1>Hello, Friend!</h1>
+                <p>
+                  If you don't have an account, let's enter your personal
+                  details and start journey with us
+                </p>
+                <Button
+                  shape="round"
+                  onClick={handleClickSignUp}
+                  icon={<SelectOutlined/>}
+                  size="large"
+                >
+                  Create new account
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ClientAuth;

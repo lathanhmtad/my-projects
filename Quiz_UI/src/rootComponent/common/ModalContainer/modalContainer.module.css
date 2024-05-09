@@ -1,0 +1,67 @@
+.root {
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: visibility .6s, opacity .6s;
+    visibility: visible;
+}
+
+.root.close {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.root.close .bgButton {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.bgButton {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .8);
+    transition: visibility .6s, opacity .6s;
+    visibility: visible;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.container {
+    z-index: 10;
+    position: relative;
+    width: 800px;
+    background-color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: top .6s;
+    top: 0;
+    height: fit-content;
+    min-height: 50vh;
+}
+
+.root.close .container {
+    top: calc(50vh);
+}
+
+.closeButton {
+    position: absolute;
+    right: 0;
+    top: 13px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.closeButton svg {
+    font-size: 16px;
+}

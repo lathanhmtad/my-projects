@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/client/css/mainHome.css">
+    <link rel="stylesheet" href="/client/css/HeaderBannerFooter.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/bamburgh.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<style>
+    .breadcrumb-section {
+        padding-top: 104px;
+        background-position: center;
+        background-size: cover;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .breadcrumb-content {
+        padding-top: 104px;
+    }
+
+    .breadcrumb-section .breadcrumb-content {
+        height: 430px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 93px;
+        text-align: center;
+
+    }
+
+    .breadcrumb-section .breadcrumb-content>div {
+        padding: 40px 65px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .breadcrumb-section .breadcrumb-content h2 {
+        font-size: calc(18px + (36 - 18) * ((100vw - 320px) / (1920 - 320)));
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 16px;
+        margin-top: -2px;
+        line-height: 28px;
+    }
+
+    .breadcrumb-section .breadcrumb-content .breadcrumb {
+        background-color: transparent;
+        margin-bottom: -7px !important;
+        padding: 0.75rem 1rem;
+        justify-content: center;
+    }
+
+    .breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item {
+        font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+        color: white;
+        text-transform: capitalize;
+        font-weight: 700;
+    }
+
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 0.5rem;
+    }
+
+    .breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item a {
+        font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+        color: white;
+    }
+
+    /* ccs form */
+    .account-sign-in {
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-sign-in .title {
+        margin-bottom: 20px;
+    }
+
+    .account-sign-in .title h3 {
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        line-height: 1.2;
+        color: black;
+    }
+
+    .account-sign-in .login-with h6 {
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.03em;
+    }
+
+    .account-sign-in .login-with .login-social .boxes {
+
+        display: flex;
+        align-items: center;
+
+        text-decoration: none;
+        justify-content: center;
+        cursor: pointer;
+        background: white;
+
+        box-shadow: 0 5px 9px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+    }
+
+    .account-sign-in .login-with .login-social .boxes h6 {
+        margin-bottom: 0;
+        margin-left: 20px;
+        text-transform: capitalize;
+        font-weight: 600;
+
+    }
+
+    .account-sign-in .divider {
+        text-align: center;
+        position: relative;
+        margin: 20px 0;
+        z-index: 1;
+    }
+
+    .account-sign-in .divider h6 {
+        display: inline-block;
+        padding: 5px 15px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        background-color: white;
+    }
+
+    .account-sign-in .divider:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #dddddd;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .account-sign-in form .form-group label {
+        text-transform: capitalize;
+        letter-spacing: 0.03em;
+        font-weight: 400;
+    }
+
+    .btn.btn-solid {
+        background-color: #ef3f3e;
+        color: white;
+        padding: 9px 20px;
+        box-shadow: 1px 11px 20px 0px rgba(239, 63, 62, 0.12);
+    }
+
+    .btn {
+        line-height: 20px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 0;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn.btn-solid.btn-outline {
+        background-color: transparent;
+        border: 1px solid #ef3f3e;
+        color: #ef3f3e;
+    }
+
+    .btn.btn-solid.btn-outline:hover {
+        color: white;
+        background-color: #ef3f3e;
+    }
+
+    .loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+</style>
+
+<body>
+    <div class="loading" id="loadingIndicator" hidden>
+        <img src="/images/loading.gif">
+    </div>
+    <th:block th:insert="~{/client/menu}"></th:block>
+    <section class="breadcrumb-section pt-0 bg-size blur-up lazyloaded"
+        style="background-image: url(&quot;/client/images/inner-bg.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Đăng ký</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Đăng ký</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="title-breadcrumb">FPT</div>
+    </section>
+    <section class="section-b-space dark-cls animated-section bg-size blur-up lazyloaded"
+        style="background-image: url(&quot;../client/images/grey-bg.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;padding-top: 80px; padding-bottom: 100px;">
+        <img src="../client/images/grey-bg.jpg" alt="" class="img-fluid blur-up lazyload bg-img" style="display: none;">
+
+        <div class="container">
+            <div class="row">
+                <div class="offset-lg-3 col-lg-6 offset-sm-2 col-sm-8 col-12">
+                    <div class="account-sign-in">
+                        <div class="title">
+                            <h3>Đăng ký</h3>
+                        </div>
+<!--                        <div class="login-with">-->
+<!--                            <h6>Đăng nhâp với</h6>-->
+<!--                            <div class="login-social row">-->
+<!--                                <div class="col">-->
+<!--                                    <a class="boxes">-->
+<!--                                        <img src="../client/images/facebook.png" class="img-fluid blur-up lazyloaded"-->
+<!--                                            alt="">-->
+<!--                                        <h6>facebook</h6>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="col">-->
+<!--                                    <a class="boxes">-->
+<!--                                        <img src="../client/images/google.png" class="img-fluid blur-up lazyloaded"-->
+<!--                                            alt="">-->
+<!--                                        <h6>google</h6>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="divider">-->
+<!--                                <h6>Hoặc</h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <form id="registerForm">
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tên đăng nhập </label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            aria-describedby="emailHelp" placeholder="Tên đăng nhập" required>
+                                        <span style="color: red;" id="messageUsername"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                            placeholder="Email" name="email" required>
+                                        <span style="color: red;" id="messageEmail"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Họ và tên </label>
+                                        <input type="text" class="form-control" id="fullname" placeholder="Họ và tên"
+                                            name="fullname" required>
+                                        <span style="color: red;" id="messageFullname"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Số điện thoại </label>
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                            placeholder="Số điện thoại" required>
+                                        <span style="color: red;" id="messagePhone"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Mật khẩu </label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Mậu khẩu" required>
+                                        <span style="color: red;" id="messagePassword"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="justify-content: space-evenly; ">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Nhập lại mật khẩu </label>
+                                        <input type="password" class="form-control" id="repassword" name="repassword"
+                                            placeholder="Nhập lại mật khẩu">
+                                        <span style="color: red;" id="messageRepass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="button-bottom">
+
+                                <div class="divider">
+                                    <h6></h6>
+                                </div>
+                                <button type="button" class="w-100 btn btn-solid btn-outline" onclick="register()">Đăng
+                                    ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <th:block th:insert="~{/client/footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script>
+
+    function checkForm() {
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var fullname = $('#fullname').val();
+        var phone = $('#phone').val();
+        var password = $('#password').val();
+        var repassword = $('#repassword').val();
+
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var phoneRegex = /^\d{10}$/
+
+        var check = true
+
+        if (username == "") {
+            $('#messageUsername').text("Vui lòng nhập tên đăng nhập!")
+            check = false
+
+        } else {
+            $('#messageUsername').text("")
+        }
+
+        if (email == "") {
+            $('#messageEmail').text("Vui lòng nhập email!")
+            check = false
+
+        } else {
+            $('#messageEmail').text("")
+        }
+
+        if (fullname == "") {
+            $('#messageFullname').text("Vui lòng nhập họ và tên!")
+            check = false
+
+        } else {
+            $('#messageFullname').text("")
+        }
+
+        if (phone == "") {
+            $('#messagePhone').text("Vui lòng nhập số điện thoại!")
+            check = false
+
+        } else {
+            $('#messagePhone').text("")
+        }
+
+        if (password == "") {
+            $('#messagePassword').text("Vui lòng nhập mật khẩu!")
+            check = false
+
+        } else {
+            $('#messagePassword').text("")
+        }
+
+        if (repassword == "") {
+            $('#messageRepass').text("Vui lòng nhập xác nhận!")
+            check = false
+
+        } else {
+            $('#messageRepass').text("")
+        }
+
+        if (!emailRegex.test(email)) {
+            $('#messageEmail').text("Email không đúng định dạng!")
+            check = false
+
+        }
+        if (!phoneRegex.test(phone)) {
+            $('#messagePhone').text("Nhập sai định dạng!")
+            check = false
+
+        }
+        if (password.length < 6) {
+            $('#messagePassword').text("Mật khẩu phải nhiều hơn 6 ký tự!")
+            check = false
+        }
+
+        return check
+    }
+
+    function register() {
+
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var fullname = $('#fullname').val();
+        var phone = $('#phone').val();
+        var password = $('#password').val();
+        var repassword = $('#repassword').val();
+
+        if (checkForm()) {
+            if (password !== repassword) {
+                Swal.fire({
+                    title: "Thông báo!",
+                    text: "Vui lòng nhập trùng nhập khẩu",
+                    icon: "error"
+                });
+
+                return;
+            }
+
+            // Create user object
+            var user = {
+                username: username,
+                email: email,
+                fullname: fullname,
+                phone: phone,
+                confirmPassword: repassword,
+                password: password
+            };
+            $('#loadingIndicator').removeAttr('hidden');
+            axios.post("/auth/register", user)
+                .then(res => {
+                    $('#loadingIndicator').attr('hidden', 'true');
+                    setNull()
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                })
+                .catch(error => {
+                    var message;
+                    if (error) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+    }
+
+    function setNull() {
+        var username = $('#username').val('');
+        var email = $('#email').val('');
+        var fullname = $('#fullname').val('');
+        var phone = $('#phone').val('');
+        var password = $('#password').val('');
+        var repassword = $('#repassword').val('');
+    }
+</script>
+
+</html>

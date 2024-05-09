@@ -1,0 +1,54 @@
+<section class="header">
+    <div class="header_nav">
+        <div class="container nav_container">
+            <div class="nav_logo_menu">
+                <div class="nav_logo">
+                    <img src="/client/images/logo.svg" alt="No picture">
+                </div>
+            </div>
+            <div class="nav">
+                <div class="nav_menu">
+                    <ul class="menu_list">
+                        <li class="list_item"><a href="/">Trang chủ</a></li>
+                        <li class="list_item"><a href="/introduce">Giới thiệu</a></li>
+                     
+                        <li class="list_item"><a href="#">Dịch vụ</a></li>
+
+                        <li class="list_item"><a href="/contact">Liên hệ</a></li>
+
+                      
+
+                        <li class="list_item">
+                            <a href="#" th:if="${session.fullname ==null}" >Tài khoản</a>
+                            <a href="#" th:if="${session.fullname !=null}" th:text="${session.fullname}">Tài khoản</a>
+                            <ul class="sub_menu">
+                                <li class="sub_menu-item" >
+                                    <a th:if="${#authorization.expression('isAuthenticated()')}" href="/logout">Đăng xuất</a>
+                                    <a th:unless="${#authorization.expression('isAuthenticated')}" href="/login">Đăng nhập</a>
+                                </li>
+                                <li class="sub_menu-item" th:if="${#authorization.expression('isAuthenticated()')}" >
+                                    <a href="/booking-history">Đơn hàng</a>
+                                </li>
+                                <li class="sub_menu-item" th:if="${#authorization.expression('isAuthenticated()')}" >
+                                    <a href="/profile">Thông tin tài khoản</a>
+                                </li>
+                                <li class="sub_menu-item"th:if="${#authorization.expression('hasRole(''ADMIN'') or hasRole(''STAFF'')')}">
+                                    <a href="/admin">Quản lý</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="menu_mobile">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav_button">
+                <a href="/search">
+                    <button>Đặt phòng ngay</button></a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giảm giá phòng</title>
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Bamburgh HTML5 Admin Dashboard with Bootstrap PRO Stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/bamburgh.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body id="app-top">
+
+    <div class="app-wrapper">
+        <div class="app-main">
+            <th:block th:insert="~{/admin/menu}"></th:block>
+            <th:block th:insert="~{/admin/header}"></th:block>
+            <!--  -->
+            <div class="modal fade" id="modal-save" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12" hidden>
+                                        <label for="inputText">ID</label>
+                                        <input type="text" class="form-control" id="discountId"
+                                            placeholder="Mã giảm giá">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDateStart">Ngày bắt đầu</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="date" class="input-sm form-control"
+                                                placeholder="Ngày bắt đầu..." name="start" id="startAt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDateEnd">Ngày kết thúc</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="date" class="input-sm form-control"
+                                                placeholder="Ngày kết thúc..." name="start" id="endAt">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPercent">Phần trăm giảm giá</label>
+                                        <input type="text" class="form-control" id="percentChange"
+                                            placeholder="Phần trăm giảm giá">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputMaxApply">Áp dụng tối đa</label>
+                                        <input type="text" class="form-control" id="maxApply"
+                                            placeholder="Áp dụng tối đa">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">Loại giảm giá</label>
+                                        <select id="type" class="form-control">
+                                            <option selected value="1">Tăng giá phòng</option>
+                                            <option value="2">Giảm giá phòng</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="saveOrUpdate()">
+                                    <i class="fas fa-save"></i>
+                                    Lưu
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+            <!--  -->
+            <div class="modal fade" id="modal-apply" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12" hidden>
+                                        <label for="input">ID</label>
+                                        <input type="text" id="iddiscount">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="input">Danh sách loại phòng</label>
+                                        <select id="typeR" class="form-control">
+                                            <option selected>Tất cả loại phòng</option>
+                                            <th:block id="roomType">
+
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-success" onclick="addDiscount()">
+                                    <i class="fas fa-solid fa-plus"></i>
+                                    Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="app-content">
+                <div class="app-content--inner">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div>
+                                    <ol class="breadcrumb text-uppercase font-size-xs p-0">
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Giảm giá</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="card card-box mb-5">
+                            <div class="card-header pr-2">
+                                <div class="card-header--title">
+                                    <b>Danh sách mã giảm giá</b>
+                                </div>
+                                <div class="card-header--actions pl-4">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#modal-save">
+                                                <i class="fas fa-plus"></i>
+                                                Thêm mới
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div data-toggle="sortable-table">
+                                    <div class="table-responsive-md">
+                                        <table class="table table-striped table-hover mb-0">
+                                            <thead class="thead-light">
+                                                <tr style="text-align:center;">
+                                                    <th scope="col" class="sort" data-sort="type">Ngày bắt đầu</th>
+                                                    <th scope="col" class="sort" data-sort="type">Ngày kết thúc</th>
+                                                    <th scope="col" class="sort" data-sort="type">Phần trăm giảm giá
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="type">Áp dụng tối đa</th>
+                                                    <th scope="col" class="sort" data-sort="type">Kiểu áp dụng</th>
+                                                    <th scope="col" class="sort" data-sort="type">Loại phòng</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list" id="data-table">
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="p-3">
+                                        <ul class="pagination justify-content-center mb-0">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <th:block th:insert="~{/admin/footer}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+
+    <script>
+        var currentPage = 1;
+        var totalPages = 1;
+
+        goToPage(1);
+
+        function goToPage(page) {
+            if (page > this.totalPages) page = 1;
+
+            if (page == 0) page = this.totalPages
+
+            axios.get("/admin/discounts?page=" + page)
+                .then(res => {
+                    $('#data-table').empty();
+                    res.data.content.forEach(function (item) {
+                        var row = ` <tr style="text-align:center;">
+                                                    <td class="">${item.startAt}</td>
+                                                    <td class="">${item.endAt}</td>
+                                                    <td class="">${item.percentChange}</td>
+                                                    <td class="">${item.maxApply}</td>
+                                                    <td class="">${item.type == 1 ? 'TĂNG GIÁ' : 'GIẢM GIÁ'}</td>
+                                                    <td class="">
+                                                      
+                                                        <button onclick="viewModalDetail()"
+                                                                class="btn border-0 w-100 btn-outline-first" data-toggle="modal"
+                                                                
+                                                                ></i>
+                                                            <span>Xem chi tiết</span>
+                                                        </button>
+                                                        <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4"
+                                                                aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="input"><b>Danh sách loại phòng được áp dụng</b></label>
+                                                                                <table class="table table-striped table-hover mb-0">
+                                                                                    <thead class="thead-light">
+                                                                                        
+                                                                                    </thead>
+                                                                                    <tbody class="list" id="data-table">
+                                                                                        <tr>
+                                                                                            <td class="">${item.discountsApply}</td>
+                                                                                        </tr>  
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" width="5%">
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-link btn-sm"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </button>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-xl dropdown-menu-right p-0">
+                                                                <div class="grid-menu grid-menu-3col">
+                                                                    <div class="no-gutters row">
+                                                                        <div class="col-sm-6">
+                                                                            <button onclick="viewModal(${item.id})"
+                                                                                class="btn border-0 w-100 btn-outline-success" style="height: 150px;" data-toggle="modal"
+                                                                                    >
+                                                                                <i class="fas fa-solid fa-plus font-size-xxl d-block mb-2 fa-bezier-curve"
+                                                                                    ></i>
+                                                                                <span>Áp dụng</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <button onclick="removeDiscountForRoom(${item.id})"
+                                                                                class="btn border-0 w-100 btn-outline-warning" style="height: 150px;" data-toggle="modal"
+                                                                                    >
+                                                                                <i class="fas fa-solid fa-plus font-size-xxl d-block mb-2 fa-bezier-curve"
+                                                                                    ></i>
+                                                                                <span>Hủy áp dụng</span>
+                                                                            </button>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <button onclick="edit(${item.id})"
+                                                                                class="btn border-0 w-100 btn-outline-primary" style="height: 150px;">
+
+                                                                                <i class="fa-solid fa-pen-to-square font-size-xxl d-block mb-2"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#modal-save"></i>
+                                                                                <span>Sửa</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <button onclick="deleteDiscount(${item.id})"
+                                                                                class="btn border-0 w-100 btn-outline-danger" style="height: 150px;">
+                                                                                <i
+                                                                                    class="fas fa-trash-alt font-size-xxl d-block mb-2 fa-bezier-curve"></i>
+                                                                                <span>Xoá</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>`
+                        $('#data-table').append(row);
+                    });
+
+                    if (res.data.content.length <= 0) {
+                        var row = `<tr class="text-center"><td colspan="6"><b>Khách sạn chưa có giảm giá phòng nào !</b></td></tr>`;
+                        $('#data-table').append(row);
+                    }
+
+
+                    this.currentPage = page;
+                    this.totalPages = res.data.totalPages
+
+                    updatePagination()
+
+                })
+                .catch(err => {
+                    console.error('Error fetching data:', err);
+                })
+        }
+
+        function updatePagination() {
+
+            let paginationData = {
+                currentPage: this.currentPage,
+                totalPages: this.totalPages
+            };
+
+            let paginationContainer = document.querySelector('.pagination');
+
+
+            paginationContainer.innerHTML = '';
+
+
+            paginationContainer.innerHTML += `<li class="page-item"><a class="page-link" onclick="goToPage(${this.currentPage - 1})" aria-label="Previous"><i class="fas fa-chevron-left"></i></a></li>`;
+
+
+            let pageNumbers = getPaginationArrayAttributes.call(paginationData);
+
+
+            pageNumbers.forEach(pageNumber => {
+                let isActive = pageNumber === paginationData.currentPage ? 'active' : '';
+                paginationContainer.innerHTML += `<li class="page-item ${isActive}"><a class="page-link"onclick="goToPage(${pageNumber})">${pageNumber}</a></li>`;
+            });
+
+            paginationContainer.innerHTML += `<li class="page-item"><a class="page-link" onclick="goToPage(${this.currentPage + 1})" aria-label="Next"><i class="fas fa-chevron-right"></i></a></li>`;
+        }
+
+        function getPaginationArrayAttributes() {
+            let startPage = Math.max(1, this.currentPage - 2);
+            let endPage = Math.min(startPage + 4, this.totalPages);
+
+            let arr = [];
+            for (let i = startPage; i <= endPage; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+
+        function saveOrUpdate() {
+            var discountDto = {
+                id: $('#discountId').val(),
+                startAt: $('#startAt').val(),
+                endAt: $('#endAt').val(),
+                percentChange: $('#percentChange').val(),
+                maxApply: $('#maxApply').val(),
+                type: $('#type').val()
+            }
+
+            axios.post("/admin/discounts/create", discountDto)
+                .then(res => {
+                    setNullForm()
+                    goToPage(1)
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+        function edit(id) {
+            axios.get("/admin/discounts/edit/" + id)
+                .then(res => {
+                    var discounts = res.data
+
+                    $('#discountId').val(discounts.id)
+                    $('#startAt').val(discounts.startAt)
+                    $('#endAt').val(discounts.endAt),
+                        $('#percentChange').val(discounts.percentChange),
+                        $('#maxApply').val(discounts.maxApply),
+                        $('#type').val(discounts.type)
+
+                    $("#modal-save").modal()
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+        function deleteDiscount(id) {
+            Swal.fire({
+                title: "Bạn có chắc chắn muốn xóa không?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xóa !"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    axios.delete("/admin/discounts/" + id)
+                        .then(res => {
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: res.data,
+                                icon: "success"
+                            });
+
+                            goToPage(1)
+                        }).catch(error => {
+                            var message;
+                            if (error.response) {
+                                message = error.response.data.message
+                            } else {
+                                message = "Lỗi vui lòng kiểm tra lại!"
+                            }
+
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: message,
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
+        function getRoomType(id) {
+            axios.get("/admin/discounts/roomTypes")
+                .then(res => {
+
+                    var selectInput = document.getElementById('typeR');
+
+                    // Xóa tất cả các phần tử hiện tại trong select
+                    while (selectInput.firstChild) {
+                        selectInput.removeChild(selectInput.firstChild);
+                    }
+
+                    // Thêm option mặc định
+                    var defaultOption = document.createElement('option');
+                    defaultOption.text = 'Tất cả loại phòng';
+                    defaultOption.selected = true;
+                    defaultOption.value = 'ALL';
+                    selectInput.add(defaultOption);
+
+                    // Thêm các option từ dữ liệu lấy từ server
+                    res.data.forEach((item) => {
+                        var optionRoomType = document.createElement('option');
+                        optionRoomType.text = item;
+                        optionRoomType.value = item;
+                        selectInput.add(optionRoomType);
+                    });
+                    $('#iddiscount').val(id)
+                })
+                .catch(err => {
+                    console.error('Error fetching data:', err);
+                })
+        }
+        function addDiscount() {
+            var roomType = $('#typeR').val();
+            var roomDiscountDto;
+
+            if (roomType === 'ALL') {
+                roomDiscountDto = {
+                    discountId: $('#iddiscount').val(),
+                };
+                addDiscountForAllRoom(roomDiscountDto);
+            } else {
+                roomDiscountDto = {
+                    discountId: $('#iddiscount').val(),
+                    roomType: roomType
+                };
+                addDiscountForRoom(roomDiscountDto);
+            }
+        }
+
+        function removeDiscountForRoom(id) {
+            Swal.fire({
+                title: "Bạn có chắc chắn muốn xóa không?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xóa !"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    axios.delete("/admin/discounts/removeDiscountForRoom/" + id)
+                        .then(res => {
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: res.data,
+                                icon: "success"
+                            });
+
+                            goToPage(1)
+                        }).catch(error => {
+                            var message;
+                            if (error.response) {
+                                message = error.response.data.message
+                            } else {
+                                message = "Lỗi vui lòng kiểm tra lại!"
+                            }
+
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: message,
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
+        function addDiscountForAllRoom(roomDiscountDto) {
+            axios.post("/admin/discounts/addDiscountForAllRoom", roomDiscountDto)
+                .then(res => {
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                    $("#modal-apply").modal('hide')
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+        function addDiscountForRoom(roomDiscountDto) {
+            axios.post("/admin/discounts/addDiscountForRoom", roomDiscountDto)
+                .then(res => {
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                    $("#modal-apply").modal('hide')
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+        function setNullForm() {
+            $('#startAt').val(''),
+                $('#endAt').val(''),
+                $('#percentChange').val(''),
+                $('#maxApply').val(''),
+                $('#type').val('')
+        }
+        function viewModal(id) {
+            $("#modal-apply").modal()
+            getRoomType(id)
+        }
+        function viewModalDetail() {
+            $("#modal-detail").modal()
+        }
+    </script>
+
+    <!--Bootstrap init-->
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!--MetisMenu-->
+
+    <script src="vendor/metismenu.min.js"></script>
+
+    <!--MetisMenu init-->
+
+    <script src="js/metismenu.min.js"></script>
+
+    <!--Perfect scrollbar-->
+
+    <script src="vendor/perfect-scrollbar.min.js"></script>
+
+    <!--Perfect scrollbar init-->
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+
+    <!--FeatherIcons-->
+
+    <script src="vendor/feather-icons.min.js"></script>
+
+    <!--FeatherIcons init-->
+
+    <script src="js/feather-icons.min.js"></script>
+
+    <!--Layout-->
+
+    <script src="js/bamburgh.min.js"></script>
+</body>
+
+</html>

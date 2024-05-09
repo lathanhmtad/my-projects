@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+# app properties
+com:
+  app:
+    cloudinary:
+      name: dixswfj8d
+      apiKey: 876943471796471
+      apiSecret: XXlwrvw541Qmp83wIgDjxZpIoNQ
+      rootFolder: product-portal-website-images

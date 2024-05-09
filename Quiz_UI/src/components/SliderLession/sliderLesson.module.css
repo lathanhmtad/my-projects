@@ -1,0 +1,119 @@
+.lessonRoot {
+    margin-bottom: 32px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lessonTitle {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+}
+
+.lessonTitle .left {
+    display: flex;
+    align-items: center;
+}
+
+.lessonTitle .left svg {
+    font-size: 24px;
+    color: #efa929;
+}
+
+.lessonTitle .left h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+
+.listLesson {
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-top: 8px;
+}
+
+.lessonContainer {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color-primary);
+    border-radius: 0.75rem;
+    background-color: white;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.lessonImageContainer {
+    width: 240px;
+    height: 160px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.lessonImageContainer img {
+    width: 100%;
+
+}
+
+.lessonBody {
+    padding: 10px 10px 14px;
+    width: 240px;
+    height: 100px;
+}
+
+.lessonBody h3 {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.lessonFooter {
+    padding: 10px 10px 14px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    column-gap: 0.375rem;
+}
+
+.modal {
+
+}
+
+.modal div[class*="modalContainer_container"] {
+    width: 480px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal *[class*="closeButton"] {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 50%;
+    right: 8px;
+}
+
+.modal *[class*="closeButton"] * {
+    color: white;
+    stroke: white;
+}
+
+.emptyImage {
+    width: 240px;
+    height: 160px;
+    background-color: rgba(59, 130, 246, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyImage img {
+    width: 40px;
+    height: 40px;
+}
+
+.mt8 {
+    margin-top: 8px;
+}

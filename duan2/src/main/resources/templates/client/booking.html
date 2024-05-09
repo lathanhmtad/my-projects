@@ -1,0 +1,484 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/client/css/Booking.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+    integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+body {
+    overflow-x: hidden; /* Ẩn nội dung tràn ra ngoài chiều rộng của body */
+}
+</style>
+    
+
+</head>
+
+<body>
+    <div class="controller">
+
+        <!-- header web -->
+        <th:block th:insert="~{/client/menu}"></th:block>
+        <!--    <th:block  th:insert="~{/client/banner}"></th:block>-->
+        <!-- Banner wed -->
+        <!--    <section class="banner">-->
+        <!--      <div class="header_banner">-->
+        <!--        <img src="client/images/slide-01.jpg" alt="No picture">-->
+        <!--        <div class="header_bgr"></div>-->
+        <!--      </div>-->
+        <!--      <div class="banner_price">-->
+        <!--        <div class="container banner_price-container">-->
+        <!--        </div>-->
+        <!--      </div>-->
+        <!--    </section>-->
+
+        <br>
+
+        <!-- nav web -->
+        <div class="navcontent">
+            <nav>
+                <div>
+                    <h3><b>Đặt phòng của bạn</b></h3>
+                    <h6>Hãy đảm bảo tất cả thông tin chi tiết trên trang này đã chính xác trước khi tiến hành thanh
+                        toán.</h6>
+                </div>
+            </nav>
+        </div>
+
+        <br>
+
+        <!-- content web -->
+        <div class="col-sm-12 contentweb">
+            <div class="row">
+
+                <!-- section web -->
+                <div class="col-sm-8">
+                    <section>
+                        <div class="sectioncontent">
+                            <!--              <div>-->
+                            <!--                <form action="">-->
+                            <!--                  <br>-->
+                            <!--                  <img-->
+                            <!--                    src="https://ik.imagekit.io/tvlk/image/imageResource/2023/11/01/1698829542551-90fc7f7a6017f1edae48bde77fd42cd4.svg?tr=h-67,q-75,w-56"-->
+                            <!--                    alt="">-->
+                            <!--                  <h5>Nhận nhiều ưu đãi hấp dẫn khi trở thành thành viên của chúng tôi.</h5>-->
+                            <!--                  <br>-->
+                            <!--                  <a href="#"><b>Đăng nhập</b></a> or <a href="#"><b>Đăng ký</b></a>-->
+                            <!--                </form>-->
+                            <!--              </div>-->
+
+                            <br>
+                            <!--
+                                      <div class="sectioninfo">
+                                        <form action="">
+                                          <h4>Thông tin liên hệ(đối với E-voucher)</h4>
+                                          <br>
+                                          <h6>Hãy điền thông tin chính xác để đảm bảo nhận được Phiếu xác nhận đặt phòng(E-voucher) qua email
+                                            của mình.</h6>
+                                          <br>
+                                          <div>
+                                            <label class="labelname" for=""><b>Họ và tên</b></label>
+                                            <br>
+                                            <input class="inputname" type="text">
+                                            <label class="labelnote" for="">Như trong hộ chiếu/CMND/CCCD(Không danh xưng/ký tự đặc biệt)</label>
+                                          </div>
+                                          <br>
+                                          <div class="rowinfo">
+                                            <div class="mail">
+                                              <label for=""><b>E-mail</b></label>
+                                              <br>
+                                              <input class="inputmail" type="mail">
+                                              <p>Chúng tôi sẽ gửi E-voucher tới email này</p>
+                                            </div>
+                                            <div class="phone">
+                                              <label class="inputphone" for=""><b>Số điện thoại</b></label>
+                                              <br>
+                                              <input type="phone">
+                                              <p>Số điện thoại cá nhân để chúng tôi liên lạc</p>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div> -->
+
+                            <br>
+
+                            <div class="sectionservice">
+                                <form action="">
+                                    <h4>Bạn có yêu cầu nào không?</h4>
+                                    <br>
+                                    <h6>Chọn các dịch vụ bạn muốn và chọn vào ô vuông bên dưới để thêm dịch vụ (nếu cần).
+                                    </h6>
+                                    <br>
+                                    <div class="rowservice">
+                                        <div th:each="item : ${facilityList}">
+                                            <input type="checkbox" th:value="${item.id}"
+                                                th:id="'checkbox_' + ${item.id}" data-price="${item.price}"
+                                                onchange="handleCheckboxChange(this)">
+                                            <input type="hidden" id="facilityPriceInput" th:value="${item.price}">
+                                            <label th:for="'checkbox_' + ${item.id}">
+                                                <b
+                                                    th:text="${item.name +' - ' + #numbers.formatDecimal(item.price, 3,  'POINT', 0 , 'COMMA')+ ' VNĐ'}"></b>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+
+                            <br>
+
+                            <div class="sectionpay">
+                                <form action="">
+                                    <h4><b>Chi tiết giá</b></h4>
+                                    <br>
+                                    <div class="textCode">
+                                        <p><img src="client/images/dimono.svg" alt=""><b> Hãy áp thêm mã giảm giá thanh
+                                                toán
+                                                để có giá tốt
+                                                hơn nhé</b></p>
+                                    </div>
+                                    <div class="priceRoom" style=" margin-left: 70px;">
+                                        <div class="">
+                                            <h5 class="d-flex justify-content-start">Giá phòng</h5>
+                                            <small
+                                                th:text="'(1x) ' + ${room.name} + ' (' + ${numberOfDays} + ' Ngày)'"></small>
+                                        </div>
+                                        <b class="d-flex justify-content-end"
+                                            th:text="${#numbers.formatDecimal(total, 3,  'POINT', 0 , 'COMMA')+ ' đ'}"></b>
+                                        <input type="hidden" th:value="${total}">
+                                    </div>
+                                    <br>
+                                    <div class="priceRoom" style=" margin-left: 70px;">
+                                        <div class="">
+                                            <h5 lass="d-flex justify-content-start">Được Giảm</h5><br>
+                                        </div>
+                                        <b id="reduction" class="d-flex justify-content-end"> - 0 VND</b>
+                                    </div>
+
+                                    <br>
+                                    <div class="modalVoucher">
+                                        <!-- Button trigger modal -->
+                                        <button onclick="btnDiscounts()" type="button" class="btn text-white"
+                                            data-toggle="modal" data-target="#exampleModal"
+                                            style="background: rgb(255, 94, 31);">
+                                            Mã giảm giá
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Chọn mã giảm giá
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <div class="contentVoucher rounded shadow-lg">
+                                                            <h6>Mã voucher</h6>
+                                                            <input type="text" name="" id=""
+                                                                placeholder="Mã Hotel Voucher">
+                                                            <button>Áp dụng</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="scrollable-container">
+                                                        <!-- Nội dung của bạn sẽ ở đây -->
+
+                                                    </div>
+                                                    <!--                                                <div class="modal-footer">-->
+                                                    <!--                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở lại</button>-->
+                                                    <!--                                                    <button type="button" class="btn btn-primary" >Sử Dụng</button>-->
+                                                    <!--                                                </div>-->
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="row p-3">
+                                        <div class="col-md-6 d-flex justify-content-start">
+                                            <h5>Tổng giá</h5>
+                                        </div>
+                                        <div class="col-md-6 d-flex justify-content-end"
+                                            style="font-size: 23px;color:#ee4d2d;">
+                                            <b id="totalpriceRoom"
+                                                th:text="${#numbers.formatDecimal(total, 3,  'POINT', 0 , 'COMMA')+ ' đ'}"></b>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="notePay">
+                                        <p><img src="client/images/Lock.png" alt=""> <b>Hãy giữ phòng này ngay trước khi
+                                                nó
+                                                tăng cao
+                                                hơn!</b></p>
+                                    </div>
+                                    <div class="btnPay">
+                                        <button onclick="booking('CASH')" type="button"><b>Thanh toán bằng tiền mặt</b>
+                                        </button>
+                                    </div>
+                                    <div class="m-4">
+                                        <b>Hoặc</b>
+                                    </div>
+                                    <div class="btnPay">
+                                        <button onclick="booking('VNPAY')" type="button"><b>Thanh toán
+                                                VNPAY</b></button>
+                                    </div>
+
+                                    
+                                </form>
+
+                            </div>
+                        </div> <br><br>
+                    </section>
+                </div>
+
+                <!-- aside web -->
+                <div class="col-sm-4">
+                    <aside>
+                        <div class="asideContent">
+                            <form class="formAside" action="">
+                                <div class="contentTop text-center">
+                                    <b><img src="client/images/like.svg" alt=""> Bạn có lựa chọn tuyệt vời cho kỳ nghỉ
+                                        của
+                                        mình</b>
+                                    <h5 th:text="${room.name}"></h5>
+
+
+                                    <!-- <p class="text-center">Xếp hạng cao trong danh mục Sạch sẽ</p> -->
+                                </div>
+
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li th:each="image, index : ${room.images}" 
+                                            th:data-target="@{'#carouselExampleIndicators'}" 
+                                            th:data-slide-to="${index}" 
+                                            th:class="${index == 0} ? 'active' : ''"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        <div th:each="image, index : ${room.images}" 
+                                        th:class="${index.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                                         <!-- <b>[[${index}]]</b> -->
+                                            <img th:src="${'/images/' + image}" class="d-block w-100" >
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                
+                                
+                                <br>
+                                <div class="timeForm">
+                                    <div class="form1">
+                                        <h6>Nhận phòng</h6>
+                                        <b th:text="${checkInDate}"></b>
+                                        <p>Từ 14:00</p>
+                                    </div>
+                                    <div class="horizontal-line">
+                                        <span class="dot"></span>
+                                        <div class="line"></div>
+                                        <span class="dot"></span>
+                                    </div>
+                                    <div class="form2">
+                                        <h6>Trả phòng</h6>
+                                        <b th:text="${checkOutDate}"></b>
+                                        <p>Trước 12:00</p>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <!--input hidden-->
+                                <input th:value="${room.id}" hidden="" name="room_id" id="room_id">
+                                <input th:value="${checkInDate}" hidden="" name="checkInDate" id="checkInDate">
+                                <input th:value="${checkOutDate}" hidden="" name="checkOutDate" id="checkOutDate">
+                                <!-- Ô input giữ giá gốc -->
+                                <input type="hidden" id="originalPriceInput" name="originalPriceInput"
+                                    th:value="${total}">
+
+                                    <!-- <input type="hidden" id="roomPrice" name="originalPriceInput"
+                                    th:value="${total}"> -->
+                                <!-- Ô input lấy giá trị thay đổi -->
+                                <input type="hidden" id="discountedPriceInput" name="discountedPriceInput"
+                                    th:value="${total}">
+                                <!--end-->
+
+                                <div>
+                                    <div class="textInfo">
+
+                                        <h5><B th:text="${room.name}"></B></h5>
+                                        <div th:each="item : ${amenities}">
+                                            <h6>
+                                                <img src="client/images/persona.svg" alt="">
+                                                <span th:text="${item.getName()}"></span>
+                                            </h6>
+                                        </div>
+
+
+                                        <!--                                    <h6><img src="client/images/persona.svg" alt=""> 1 Giường cỡ King</h6>-->
+                                        <!--                                    <h6><img src="client/images/eat.svg" alt=""> Không gồm bữa sáng</h6>-->
+                                        <!--                                    <h6><img src="client/images/gift.svg" alt=""> Giảm 10% cho ăn uống</h6>-->
+                                        <!--                                    <h6><img src="client/images/wifi.svg" alt=""> Wifi free</h6>-->
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <!--                            <div class="textPay">-->
+                                <!--                                <div class="textRoom">-->
+                                <!--                                    <h6>Tổng Giá Phòng</h6>-->
+                                <!--                                    <p>1 phòng, <span th:text="${numberOfDays +' Ngày'}"></span></p>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="textMoney">-->
+                                <!--                                    <h5 th:text="${total +' VND'}"></h5>-->
+                                <!--                                    <h6><img src="client/images/doublegreen.svg" alt="">Giá tốt nhất</h6>-->
+                                <!--                                </div>-->
+                                <!--                            </div>-->
+
+                                <br>
+
+                                <div class="textPolicy">
+                                    <form action="">
+                                        <h4><img src="client/images/document.svg" alt=""><b> Chính sách hủy và đổi
+                                                lịch</b>
+                                        </h4>
+
+                                        <h6>Bạn có giá tốt nhất với phòng này!</h6>
+
+                                        <h5><img src="client/images/oke.png" alt=""> Đặt phòng này được hoàn tiền.</h5>
+
+                                        <h5><img src="client/images/dont.png" alt=""> Non-reschedulable</h5>
+                                    </form>
+                                </div>
+
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer web -->
+
+
+    </div>
+
+    <div class="row" style="margin-top: 80px;">
+        <section class="footer col-12 mt-5">
+            <div class="main_footer">
+                <div class="container footer_container">
+                    <div class="row footer_row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="footer_logo" style="margin: 0 0 15px 0;">
+                                <img src="/client/images/logo-hotel-removebg.png" alt="No picture">
+                            </div>
+                            <div class="footer_info" style="font-size: 13px">
+                                <!-- <p>http://BookingHotel.vn/</p> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <h3 style="color:#ffffff">Liên hệ</h3>
+                            <div class="footer_contact">
+                                <ul class="contact_address">
+                                    <li class="contact_address-item">
+                                        <i class="fas fa-map-marker-alt"></i>Hòa Khánh Nam, Liên Chiểu, Đà Nẵng
+                                    </li>
+                                    <li class="contact_address-item">
+                                        <a href="#">
+                                            <i class="fas fa-phone-alt"></i> 0367723124
+                                        </a>
+                                    </li>
+                                    <li class="contact_address-item">
+                                        <a href="#">
+                                            <i class="far fa-envelope"></i> vuth@web
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <h3 style="color:#ffffff">Đường dẫn</h3>
+                            <div class="footer_quick">
+                                <ul class="quick_list">
+                                    <li class="quick_list-item">
+                                        <a href="lien-he">Liên hệ</a>
+                                    </li>
+                                    <li class="quick_list-item">
+                                        <a href="ve-chung-toi">Về chúng tôi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <h3 style="color:#ffffff">ĐỪNG BỎ LỠ BẤT KỲ BẢN CẬP NHẬT NÀO</h3>
+                            <div class="input_email">
+                                <input type="text" placeholder="Email">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <a href="#">
+                                <button class="button_signUp">Đăng ký ngay</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_copyright">
+                <div class="container">
+                    <span>
+                        Copyright ©Booking Hotel 2023 All Rights Reserved
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/client/js/booking_room.js"></script>
+
+
+
+    <script>
+        // function toggleCheckbox() {
+        //     var checkbox = document.getElementById("voucherRadio");
+        //     checkbox.checked = !checkbox.checked;
+        // }
+
+
+
+    </script>
+</body>
+
+
+</html>

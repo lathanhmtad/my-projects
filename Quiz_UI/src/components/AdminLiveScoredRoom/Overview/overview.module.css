@@ -1,0 +1,127 @@
+.playerContainer {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.playerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 16px 32px;
+}
+
+.playerHeader * {
+    color: white;
+}
+
+.playerHeader path {
+    stroke: white;
+}
+
+.tablePlayer {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 128px;
+    padding-bottom: 32px;
+}
+
+.tableTitle {
+    display: flex;
+    padding: 8px 32px;
+}
+
+.showTime {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.tableTitle > * {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.player > *:nth-child(1),
+.tableTitle > *:nth-child(1) {
+    width: 5%;
+}
+
+.player > *:nth-child(2),
+.tableTitle > *:nth-child(2) {
+    width: 20%
+}
+
+.player > *:nth-child(3),
+.tableTitle > *:nth-child(3) {
+    width: 15%
+}
+
+.player > *:nth-child(n+4),
+.tableTitle > *:nth-child(n+4) {
+    width: 5%
+}
+
+.player > *:last-child,
+.tableTitle > *:last-child(8) {
+    width: 40%
+}
+
+.players {
+    padding: 8px 0;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0 32px;
+}
+
+.player {
+    color: white;
+}
+
+.wrong > span,
+.right > span {
+    background-color: var(--right-primary-color);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.wrong > span {
+    background-color: var(--wrong-primary-color);
+}
+
+.right path {
+    stroke: white;
+}
+
+.wrong {
+
+}
+
+.wrong path {
+    stroke: white;
+}
+
+.player {
+    display: flex;
+    padding: 8px;
+}
+
+.progress > div,
+.player > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.player img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}

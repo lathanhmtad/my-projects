@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quản lý mã giảm giá</title>
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Bamburgh HTML5 Admin Dashboard with Bootstrap PRO Stylesheets -->
+
+    <link rel="stylesheet" href="css/bamburgh.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body id="app-top">
+
+    <div class="app-wrapper">
+        <th:block th:insert="~{/admin/menu}"></th:block>
+        <div class="app-main">
+            <th:block th:insert="~{/admin/header}"></th:block>
+            <div class="modal fade" id="modal-save" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-row">
+                                    <!-- <div class="form-group col-md-6">
+                                        <label for="inputID">ID</label>
+                                        <input type="text" class="form-control" id="inputID" placeholder="Nhập id">
+                                    </div> -->
+                                    <input type="text" name="" id="voucherId" hidden>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCode">Tên chương trình</label>
+                                        <input type="text" class="form-control" id="voucherName"
+                                            placeholder="Mã giảm giá">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCode">Mã giảm giá</label>
+                                        <input type="text" class="form-control" id="voucherCode"
+                                            placeholder="Mã giảm giá">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Ngày bắt đầu</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="date" class="input-sm form-control"
+                                                placeholder="Ngày bắt đầu..." name="start" id="startAt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Ngày kết thúc</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="date" class="input-sm form-control"
+                                                placeholder="Ngày kết thúc..." name="start" id="endAt">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputMinApply">Áp dụng tối thiểu</label>
+                                        <input type="text" class="form-control" id="minApply" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputMaxApply">Áp dụng tối đa</label>
+                                        <input type="text" class="form-control" id="maxApply" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputMaxApply">Giảm giá</label>
+                                        <input type="text" class="form-control" id="discount" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputQuantity">Số lượng</label>
+                                        <input type="number" class="form-control" id="quantity" placeholder="Số lượng">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Loại giảm giá</label>
+                                        <select id="voucherType" class="form-control">
+                                            <option selected value="2">Theo giá tiền</option>
+                                            <option value="1">Theo phần trăm </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <textarea name="" class="form-control" id="notes" cols="10" rows="5"></textarea>
+                                </div>
+                                <button type="button" onclick="saveOrUpdate()" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Lưu
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-content">
+                <div class="app-content-inner">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div>
+                                    <ol class="breadcrumb text-uppercase font-size-xs p-0">
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="#">VOUCHER</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="card card-box mb-5">
+                            <div class="card-header pr-2">
+                                <div class="card-header--title">
+                                    <b>Danh sách voucher</b>
+                                </div>
+                                <div class="card-header--actions pl-4">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button type="button" onclick="setNullVoucher()" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#modal-save">
+                                                <i class="fas fa-plus"></i>
+                                                Thêm mới
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div data-toggle="sortable-table"
+                                    data-list-values='["name", "price", "status", "completion"]'>
+                                    <div class="table-responsive-md">
+                                        <table class="table table-striped table-hover mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                   
+                                                    <th scope="col" class="sort" data-sort="name">Mã giảm giá</th>
+                                                    <th scope="col" class="sort" data-sort="type"> Ngày bắt đầu
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Ngày kết thúc
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Số lượng
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Áp dụng tối thiểu
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Áp dụng tối đa
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Giảm giá
+                                                    </th>
+                                                    <th scope="col" class="sort text-center" data-sort="status">
+                                                        Loại giảm giá
+                                                    </th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list" id="data-table">
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="divider"></div>
+                                    <div class="p-3">
+                                        <ul class="pagination justify-content-center mb-0">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <th:block th:insert="~{/admin/footer}"></th:block>
+            </div>
+         
+        </div>
+    </div>
+    <!-- Bamburgh HTML5 Admin Dashboard with Bootstrap PRO Javascript Core -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="/admin/vendor/bootstrap.min.js"></script>
+
+    <!--Bootstrap init-->
+
+    <script>
+        var currentPage = 1;
+        var totalPages = 1;
+
+        goToPage(1)
+
+        function goToPage(page) {
+
+            if (page > this.totalPages) {
+                page = 1;
+            }
+
+            if (page == 0) {
+                page = this.totalPages
+            }
+
+            axios.get("/admin/voucher/findAll?page=" + page)
+                .then(res => {
+                    $('#data-table').empty();
+                    res.data.content.forEach(function (item) {
+                        var row = ` <tr>
+                          
+                            <td class="">${item.voucherName}</td>
+                            <td class="">${item.startAt}</td>
+                            <td class="">${item.endAt}</td>
+                            <td class="">${item.quantity}</td>
+                            <td class="">${item.minApply}</td>
+                            <td class="">${item.maxApply}</td>
+                            <td class="">${item.discount}</td>
+
+                            <td class="status">
+                                <div class="text-center">
+                                    <span class="badge badge-success">${item.voucherType == 1?"Theo phần trăm":"Theo giá tiền"}</span>
+                                </div>
+                            </td>
+                            <td class="text-center" width="5%">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-link btn-sm"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-xl dropdown-menu-right p-0">
+                                        <div class="grid-menu grid-menu-2col">
+                                            <div class="no-gutters row">
+                                                <div class="col-sm-6 p-3">
+                                                    <button
+                                                        class="btn border-0 w-100 btn-outline-primary" onclick="edit(${item.id})">
+                                                        <i
+                                                            class="fa-solid fa-pen-to-square font-size-xxl d-block mb-2"></i>
+                                                        <span>Sửa</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-6 p-3">
+                                                    <button
+                                                        class="btn border-0 w-100 btn-outline-danger" onclick="deleteVoucher(${item.id})">
+                                                        <i
+                                                            class="fas fa-trash-alt font-size-xxl d-block mb-2 fa-bezier-curve"></i>
+                                                        <span>Xoá</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr`
+                        $('#data-table').append(row);
+                    });
+
+                    if (res.data.content.length <= 0) {
+                        var row = `<tr class="text-center"><td colspan="10"><b>Khách sạn chưa có mã giảm giá nào !</b></td></tr>`;
+                        $('#data-table').append(row);
+                    }
+
+
+                    this.currentPage = page;
+                    this.totalPages = res.data.totalPages
+
+                    updatePagination()
+                })
+                .catch(err => {
+                    console.error('Error fetching data:', err);
+
+                })
+        }
+
+        function getPaginationArrayAttributes() {
+            let startPage = Math.max(1, this.currentPage - 2);
+            let endPage = Math.min(startPage + 4, this.totalPages);
+
+            let arr = [];
+            for (let i = startPage; i <= endPage; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+
+        function saveOrUpdate() {
+
+            var voucherId = $('#voucherId').val();
+            var voucherName = $('#voucherName').val();
+            var voucherCode = $('#voucherCode').val();
+            var startAt = $('#startAt').val();
+            var endAt = $('#endAt').val();
+            var minApply = $('#minApply').val();
+            var maxApply = $('#maxApply').val();
+            var quantity = $('#quantity').val();
+            var voucherType = $('#voucherType').val();
+            var discount = $('#discount').val();
+            var notes = $('#notes').val();
+
+            // Create a voucher object
+            var voucher = {
+                id: voucherId,
+                voucherName: voucherName,
+                voucherCode: voucherCode,
+                startAt: startAt,
+                endAt: endAt,
+                discount: discount,
+                minApply: minApply,
+                maxApply: maxApply,
+                quantity: quantity,
+                voucherType: voucherType,
+                notes: notes
+            };
+            axios.post("/admin/voucher/saveOrUpdate", voucher)
+                .then(res => {
+                    setNullVoucher()
+
+                    goToPage(1)
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+        function deleteVoucher(id) {
+            Swal.fire({
+                title: "Bạn có chắc chắn muốn xóa không?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xóa !"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    axios.delete("/admin/voucher/delete/" + id)
+                        .then(res => {
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: res.data,
+                                icon: "success"
+                            });
+
+                            goToPage(1)
+                        }).catch(error => {
+                            var message;
+                            if (error.response) {
+                                message = error.response.message
+                            } else {
+                                message = "Lỗi vui lòng kiểm tra lại!"
+                            }
+
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: message,
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
+        function edit(id) {
+            axios.get("/admin/voucher/edit/" + id)
+                .then(res => {
+                    var voucher = res.data
+
+                    $('#voucherId').val(voucher.id);
+                    $('#voucherName').val(voucher.voucherName);
+                    $('#voucherCode').val(voucher.voucherCode);
+                    $('#startAt').val(voucher.startAt);
+                    $('#endAt').val(voucher.endAt);
+                    $('#minApply').val(voucher.minApply);
+                    $('#maxApply').val(voucher.maxApply);
+                    $('#discount').val(voucher.discount);
+                    $('#quantity').val(voucher.quantity);
+                    $('#voucherType').val(voucher.voucherType);
+                    $('#notes').val(voucher.notes);
+
+                    $("#modal-save").modal()
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+        function updatePagination() {
+
+            let paginationData = {
+                currentPage: this.currentPage,
+                totalPages: this.totalPages
+            };
+
+            let paginationContainer = document.querySelector('.pagination');
+
+
+            paginationContainer.innerHTML = '';
+
+
+            paginationContainer.innerHTML += `<li class="page-item"><a class="page-link" onclick="goToPage(${this.currentPage - 1})" aria-label="Previous"><i class="fas fa-chevron-left"></i></a></li>`;
+
+
+            let pageNumbers = getPaginationArrayAttributes.call(paginationData);
+
+
+            pageNumbers.forEach(pageNumber => {
+                let isActive = pageNumber === paginationData.currentPage ? 'active' : '';
+                paginationContainer.innerHTML += `<li class="page-item ${isActive}"><a class="page-link"onclick="goToPage(${pageNumber})">${pageNumber}</a></li>`;
+            });
+
+
+
+
+            paginationContainer.innerHTML += `<li class="page-item"><a class="page-link" onclick="goToPage(${this.currentPage + 1})" aria-label="Next"><i class="fas fa-chevron-right"></i></a></li>`;
+        }
+
+        function setNullVoucher() {
+            $('#voucherId').val('');
+            $('#voucherName').val('');
+            $('#voucherCode').val('');
+            $('#startAt').val('');
+            $('#endAt').val('');
+            $('#minApply').val('');
+            $('#maxApply').val('');
+            $('#discount').val('');
+            $('#quantity').val('');
+            $('#voucherType').val('');
+            $('#notes').val('');
+        }
+    </script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!--MetisMenu-->
+
+    <script src="vendor/metismenu.min.js"></script>
+
+    <!--MetisMenu init-->
+
+    <script src="js/metismenu.min.js"></script>
+
+    <!--Perfect scrollbar-->
+
+    <script src="vendor/perfect-scrollbar.min.js"></script>
+
+    <!--Perfect scrollbar init-->
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+
+    <!--FeatherIcons-->
+
+    <script src="vendor/feather-icons.min.js"></script>
+
+    <!--FeatherIcons init-->
+
+    <script src="js/feather-icons.min.js"></script>
+
+    <!--Layout-->
+
+    <script src="js/bamburgh.min.js"></script>
+
+</body>
+
+</html>

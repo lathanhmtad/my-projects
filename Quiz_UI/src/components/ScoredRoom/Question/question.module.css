@@ -1,0 +1,48 @@
+.root {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, .5);
+    border-left: 8px solid var(--right-primary-color);
+    cursor: pointer;
+}
+
+.root.wrong {
+    border-left: 8px solid var(--wrong-primary-color);
+}
+
+.root * {
+    color: var(--text-color-primary);
+}
+
+.container {
+
+}
+
+.container > h2 {
+    font-size: 15px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    border-bottom: 1px solid #d8d8d8;
+    display: flex;
+    column-gap: 12px;
+}
+
+.answers {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.answers svg {
+    fill: white;
+}
+
+.answers > li {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    font-size: 16px;
+    color: #000 !important;
+}

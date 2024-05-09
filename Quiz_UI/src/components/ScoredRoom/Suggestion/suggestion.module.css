@@ -1,0 +1,44 @@
+.root {
+    margin-top: 16px;
+    display: flex;
+    column-gap: 8px;
+}
+
+.imageContainer {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.imageContainer img {
+    height: 100%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+.info > h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    margin-top: 8px;
+}
+
+.info > div span {
+    font-size: 12px;
+    font-weight: 500;
+    color: hsla(0, 0%, 100%, .66);
+}

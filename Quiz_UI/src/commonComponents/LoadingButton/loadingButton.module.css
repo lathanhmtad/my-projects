@@ -1,0 +1,31 @@
+.root {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding: 16px;
+    justify-content: center;
+    box-shadow: var(--button-primary-shadow);
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.root:hover {
+    transform: translateY(-4px);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.root * {
+    font-size: 20px;
+}
+
+.root.light {
+    background-color: var(--primary-color);
+}

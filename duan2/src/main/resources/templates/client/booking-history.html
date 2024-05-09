@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/client/css/HistoryRoom.css">
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="controller"  >
+
+        <!-- header web -->
+        <th:block th:insert="~{/client/menu}"></th:block>
+
+        <!-- Banner wed -->
+        <!-- <section class="banner">
+            <div class="header_banner">
+                <img src="client/images/slide-01.jpg" alt="No picture">
+                <div class="header_bgr"></div>
+            </div>
+            <div class="banner_price">
+                <div class="container banner_price-container">
+                </div>
+            </div>
+        </section> -->
+
+        <br>
+
+        <!-- nav web -->
+        <div class="navcontent" >
+            <nav>
+                <div>
+                    <h3><b>Lịch sử đặt phòng của bạn</b></h3>
+                    <h6>Hãy kiểm ra lại thông tin phòng bạn đã đặt có chính xác theo yêu cầu của bạn không.</h6>
+                </div>
+            </nav>
+        </div>
+
+        <br>
+
+        <!-- content web -->
+        <div th:each="item : ${list}" >
+            <div class="contentWeb">
+                <form action="">
+                    <div class="textContent">
+                        <p>Yêu thích</p>
+                        <b>Đà Nẵng Chill</b>
+                        <!-- <a href="#"> -->
+                            <!-- <h6>Xem chi tiết phòng</h6> -->
+                        <!-- </a> -->
+                        <!-- <h5 class="" th:text="${item.status}"> </h5> -->
+                    </div>
+                    <hr class="custom-hr">
+                    <div class="mainContent">
+                        <img th:src="@{'/images/' + ${item.room.images[0]}}"
+                            alt="">
+                         <div class="detailContent" th:onclick="|window.location.href='/bill-details/' + ${item.id}|">
+                            <h5 th:text="${item.room.name}"></h5>
+                            <h6 th:text="${'Ngày nhận phòng : ' + item.checkInAt + ' -> ' +'Ngày trả phòng : '+ item.checkOutAt}"> </h6>
+                            <h6>1 phòng, 1 đêm</h6>    
+                            <h6 ><b>Trạng thái : </b> <b th:utext="${item.status.toString() eq 'CANCELLED' ? '<span style=&quot;color: red;&quot;>ĐÂ HỦY</span>' : 
+                                item.status.toString() eq 'WAITING' ? '<span style=&quot;color: rgb(255, 94, 31);&quot;>ĐANG CHỜ NHẬN PHÒNG</span>' :
+                                item.status.toString() eq 'RECEIVED' ? '<span style=&quot;color: green;&quot;>ĐÃ NHẬN PHÒNG</span>' :
+                                item.status.toString() eq 'CHECKED_OUT' ? '<span style=&quot;color: green;&quot;>ĐÃ TRẢ PHÒNG</span>' : ''}">
+              </b> </h6>   
+                        </div>
+                        <!-- <h5 class="priceContent" th:text="${#numbers.formatDecimal(item.total, 3,  'POINT', 0 , 'COMMA')+ ' VNĐ'}"></h5> -->
+                    </div>
+                   
+                </form>
+            
+            </div>
+
+            <div class="contentPay" >
+                <form action="">
+                    <div class="textPay">
+                        <h5> <b>Tổng tiền : </b></h5>
+                        <h5 class="" th:text="${#numbers.formatDecimal(item.total, 3,  'POINT', 0 , 'COMMA')+ ' VNĐ'}">
+                        </h5>
+                    </div>
+                    <br>
+
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="text-center mt-5 mb-5 " style="height: 100px;" th:if="${list.size == 0}">
+            <h5><b>Bạn chưa có đơn đặt phòng nào !</b></h5>
+        </div>
+
+        <!-- footer web -->
+        <th:block th:insert="~{/client/footer}"></th:block>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

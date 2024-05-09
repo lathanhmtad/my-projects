@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <title>Tài khoản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Bamburgh HTML5 Admin Dashboard with Bootstrap PRO Stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/bamburgh.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body id="app-top">
+
+    <div class="app-wrapper">
+        <th:block th:insert="~{/admin/menu}"></th:block>
+        <div class="app-main">
+            <th:block th:insert="~{/admin/header}"></th:block>
+            <div class="modal fade" id="modal-save" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form>
+                                <div class="card-header--title">
+                                    <b>THÊM MỚI KHÁCH HÀNG</b>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6" hidden>
+                                        <label for="inputEmail4">ID</label>
+                                        <input type="text" class="form-control" id="idUser" placeholder="Tên tài khoản">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Tên tài khoản</label>
+                                        <input type="text" class="form-control" id="username"
+                                            placeholder="Tên tài khoản">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputZip">Tên chủ tài khoản</label>
+                                        <input type="text" class="form-control" id="fullname"
+                                            placeholder="Tên chủ tài khoản">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Mật khẩu</label>
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Mất khẩu">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputZip">Nhập lại mất khẩu</label>
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                            placeholder="Nhập lại mất khẩu">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Số điện thoại </label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputZip">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Vai trò</label>
+                                        <select id="roleSelect" class="form-control">
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Trạng thái</label>
+                                        <select id="activeSelect" class="form-control">
+                                            <option value="true">Hoạt động</option>
+                                            <option value="false">Chưa kích hoạt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="creat()" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Lưu
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-content">
+                <div class="app-content--inner">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div>
+                                    <ol class="breadcrumb text-uppercase font-size-xs p-0">
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Khách hàng</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="card card-box mb-5">
+                            <div class="card-header pr-2">
+                                <div class="card-header--title">
+                                    <b>Danh sách tài khoản</b>
+                                </div>
+                                <div class="card-header--actions">
+                                    <button type="button" onclick="setNullUser()" class="btn btn-sm btn-primary"
+                                        data-toggle="modal" data-target="#modal-save">
+                                        <i class="fas fa-plus"></i>
+                                        Thêm mới
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div data-toggle="sortable-table"
+                                    data-list-values='["name", "price", "status", "completion"]'>
+                                    <div class="table-responsive-md">
+                                        <table class="table table-striped table-hover mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col" class="sort" data-sort="name">Họ và tên</th>
+                                                    <th scope="col" class="sort" data-sort="type"> SĐT
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Email
+                                                    </th>
+                                                    <th scope="col" class="sort" data-sort="price">
+                                                        Vai trò
+                                                    </th>
+                                                    <th scope="col" class="sort text-center" data-sort="status">
+                                                        Trạng Thái
+                                                    </th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list" id="data-table">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="divider"></div>
+                                    <div class="p-3">
+                                        <ul class="pagination justify-content-center mb-0">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <th:block th:insert="~{/admin/footer}"></th:block>
+            </div>
+        </div>
+    </div>
+    <!-- Bamburgh HTML5 Admin Dashboard with Bootstrap PRO Javascript Core -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+
+    <script>
+        var currentPage = 1;
+        var totalPages = 1;
+
+        goToPage(1)
+        getRoles()
+
+        function goToPage(page) {
+
+            if (page > this.totalPages) {
+                page = 1;
+            }
+
+            if (page == 0) {
+                page = this.totalPages
+            }
+
+            axios.get("/admin/user?page=" + page)
+                .then(res => {
+                    $('#data-table').empty();
+                    res.data.content.forEach(function (item) {
+                        var row = ` <tr>
+                                                    <td class="name">
+                                                        <div class="align-box-row">
+                                                            ${item.fullname}
+                                                        </div>
+                                                    </td>
+                                                    <td class="type">
+                                                        <div class="align-box-row">
+                                                            ${item.phone}
+                                                        </div>
+                                                    </td>
+                                                    <td class="price">
+                                                        <div class="align-box-row">
+                                                            ${item.email}
+                                                        </div>
+                                                    </td>
+                                                    <td class="role">
+                                                        <div class="align-box-row">
+                                                            ${item.role}
+                                                        </div>
+                                                    </td>
+                                                    <td class="status">
+                                                        <div class="text-center">
+                                                            <span class="badge ${item.active ? "badge-success" : "badge-danger"}">${item.active ? "Đang hoạt động" : "Chưa kích hoạt"}</span>
+                                                         
+                                                        </div >
+                                                    </td >
+                            <td class="text-center" width="5%">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-link btn-sm"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-xl dropdown-menu-right p-0">
+                                        <div class="grid-menu grid-menu-2col">
+                                            <div class="no-gutters row">
+                                                <div class="col-sm-6 p-3">
+                                                    <button onclick="editUser(${item.id})"
+                                                        class="btn border-0 w-100 btn-outline-primary"
+                                                        data-toggle="modal"
+                                                        data-target="#modal-save">
+                                                        <i
+                                                            class="fa-solid fa-pen-to-square font-size-xxl d-block mb-2"></i>
+                                                        <span>Sửa</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-6 p-3">
+                                                    <button onclick="deleteUser(${item.id})"
+                                                        class="btn border-0 w-100 btn-outline-danger">
+                                                        <i
+                                                            class="fas fa-trash-alt font-size-xxl d-block mb-2 fa-bezier-curve"></i>
+                                                        <span>Xoá</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                                                </tr > `
+                        $('#data-table').append(row);
+                    });
+
+                    if (res.data.content.length <= 0) {
+                        var row = `<tr tr class="text-center" > <td colspan="10"><b>Khách sạn chưa có mã giảm giá nào !</b></td></tr > `;
+                        $('#data-table').append(row);
+                    }
+
+
+                    this.currentPage = page;
+                    this.totalPages = res.data.totalPages
+
+                    updatePagination()
+                })
+                .catch(err => {
+                    console.error('Error fetching data:', err);
+
+                })
+        }
+
+        function getPaginationArrayAttributes() {
+            let startPage = Math.max(1, this.currentPage - 2);
+            let endPage = Math.min(startPage + 4, this.totalPages);
+
+            let arr = [];
+            for (let i = startPage; i <= endPage; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+        function updatePagination() {
+
+            let paginationData = {
+                currentPage: this.currentPage,
+                totalPages: this.totalPages
+            };
+
+            let paginationContainer = document.querySelector('.pagination');
+
+
+            paginationContainer.innerHTML = '';
+
+
+            paginationContainer.innerHTML += `<li li class="page-item" > <a class="page-link" onclick="goToPage(${this.currentPage - 1})" aria-label="Previous"><i class="fas fa-chevron-left"></i></a></li > `;
+
+
+            let pageNumbers = getPaginationArrayAttributes.call(paginationData);
+
+
+            pageNumbers.forEach(pageNumber => {
+                let isActive = pageNumber === paginationData.currentPage ? 'active' : '';
+                paginationContainer.innerHTML += `<li li class="page-item ${isActive}" > <a class="page-link" onclick="goToPage(${pageNumber})">${pageNumber}</a></li > `;
+            });
+
+            paginationContainer.innerHTML += `<li li class="page-item" > <a class="page-link" onclick="goToPage(${this.currentPage + 1})" aria-label="Next"><i class="fas fa-chevron-right"></i></a></li >`;
+        }
+
+        function creat() {
+            var id = $('#idUser').val();
+            var username = $('#username').val();
+            var fullname = $('#fullname').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+            var phone = $('#phone').val();
+            var email = $('#email').val();
+            var role = $('#roleSelect').val();
+            var active = $('#activeSelect').val();
+
+            var userDto = {
+                id: id,
+                username: username,
+                fullname: fullname,
+                phone: phone,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                active: active,
+                role: role
+            }
+
+            axios.post("/admin/user/create", userDto)
+                .then(res => {
+                    setNullUser()
+
+                    goToPage(1)
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: res.data,
+                        icon: "success"
+                    });
+                })
+                .catch(error => {
+                    var message;
+                    if (error.response) {
+                        message = error.response.data.message
+                    } else {
+                        message = "Lỗi vui lòng kiểm tra lại!"
+                    }
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                })
+        }
+
+        function editUser(id) {
+            getRoles()
+            $('#activeSelect').prop('disabled', false);
+            axios.get("/admin/user/edit/" + id)
+                .then(res => {
+                    var user = res.data;
+
+                    $('#activeSelect').val(user.active ? 'true' : 'false')
+                    $('#idUser').val(user.id);
+                    $('#username').val(user.username);
+                    $('#fullname').val(user.fullname);
+                    // $('#password').val(user.password);
+                    $('#phone').val(user.phone);
+                    $('#email').val(user.email);
+
+
+                    // Thiết lập giá trị cho thẻ select
+                    $('#roleSelect').val(user.role);
+
+                    $("#modal-save").modal();
+                })
+                .catch(error => {
+                    var message = error.response ? error.response.message : "Lỗi vui lòng kiểm tra lại!";
+
+                    Swal.fire({
+                        title: "Thông báo!",
+                        text: message,
+                        icon: "error"
+                    });
+                });
+        }
+
+        function deleteUser(id) {
+            Swal.fire({
+                title: "Bạn có chắc chắn muốn xóa không?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xóa !"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    axios.delete("/admin/user/delete/" + id)
+                        .then(res => {
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: res.data,
+                                icon: "success"
+                            });
+
+                            goToPage(1)
+                        }).catch(error => {
+                            var message;
+                            if (error.response) {
+                                message = error.response.message
+                            } else {
+                                message = "Lỗi vui lòng kiểm tra lại!"
+                            }
+
+                            Swal.fire({
+                                title: "Thông báo!",
+                                text: message,
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
+        function getRoles() {
+            $('#roleSelect').empty();
+            axios.get("/admin/user/getRoles")
+                .then(res => {
+                    var selectRole = $('#roleSelect');
+                    res.data.forEach((item) => {
+                        var optionRole = document.createElement('option');
+                        optionRole.text = item;
+                        optionRole.value = item;
+                        selectRole.append(optionRole);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching roles:", error);
+                });
+        }
+
+        function setNullUser() {
+            var id = $('#idUser').val('');
+            var username = $('#username').val('');
+            var fullname = $('#fullname').val('');
+            var password = $('#password').val('');
+            var confirmPassword = $('#confirmPassword').val('');
+            var phone = $('#phone').val('');
+            var email = $('#email').val('');
+            var role = $('#roleSelect').val('USER');
+
+            $('#activeSelect').prop('disabled', true);
+        }
+    </script>
+
+    <!--Bootstrap init-->
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!--MetisMenu-->
+
+    <script src="vendor/metismenu.min.js"></script>
+
+    <!--MetisMenu init-->
+
+    <script src="js/metismenu.min.js"></script>
+
+    <!--Perfect scrollbar-->
+
+    <script src="vendor/perfect-scrollbar.min.js"></script>
+
+    <!--Perfect scrollbar init-->
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+
+    <!--FeatherIcons-->
+
+    <script src="vendor/feather-icons.min.js"></script>
+
+    <!--FeatherIcons init-->
+
+    <script src="js/feather-icons.min.js"></script>
+
+    <!--Layout-->
+
+    <script src="js/bamburgh.min.js"></script>
+</body>
+
+</html>

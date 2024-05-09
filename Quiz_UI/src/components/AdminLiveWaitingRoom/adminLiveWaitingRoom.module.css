@@ -1,0 +1,165 @@
+
+.root {
+    min-height: calc(100vh - 72px);
+}
+
+.top {
+    padding-top: 16px;
+}
+
+.top * {
+    color: white;
+}
+
+.contentContainer {
+    padding: 12px;
+    text-align: center;
+    position: relative;
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 16px;
+    background: #434343;
+    background: -moz-linear-gradient(top, #434343 0%, #000 100%);
+    background: -webkit-linear-gradient(top, #434343 0%, #000 100%);
+    background: linear-gradient(to bottom, #434343 0%, #000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#434343', endColorstr='#000000', GradientType=0);
+}
+
+.topTitle {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.group {
+
+}
+
+.group > *:first-child {
+    margin-bottom: 8px;
+}
+
+.group + .group {
+    margin-top: 16px;
+}
+
+.joinLinkContainer > div {
+    display: inline-flex;
+    column-gap: 8px;
+    width: fit-content;
+    padding: 8px;
+    background-color: white;
+    border-radius: 8px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.joinLinkContainer * {
+    color: black;
+}
+
+.share {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.shareTitle span {
+    color: rgba(255, 255, 255, 0.66);
+}
+
+.labelRoot {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 16px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.countBadge {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    transform: translateY(-50%);
+    display: flex;
+    column-gap: 4px;
+    background-color: #000;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+    margin: 16px 24px;
+    color: #fff;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+.countBadge path {
+    stroke: white;
+    fill: white;
+}
+
+.countBadge svg {
+    font-size: 20px;
+}
+
+.controller {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.controller h3 {
+    font-size: 20px;
+    color: white;
+}
+
+.playerList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    height: 96px;
+    border-radius: 24px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #000;
+    margin: 16px;
+    position: relative;
+}
+
+.playerName {
+    color: white;
+}
+
+.player .avatar {
+
+}
+
+.player .avatar img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}

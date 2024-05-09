@@ -1,0 +1,78 @@
+  <div class="app-header">
+                <div class="d-flex">
+                    <button class="navbar-toggler hamburger hamburger--elastic toggle-sidebar" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                    <button class="navbar-toggler hamburger hamburger--elastic toggle-sidebar-mobile" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                    <!-- <div class="search-link">
+                        <div class="d-none d-lg-flex">
+                            <i class="fas search-icon fa-search"></i>
+                            <input type="text" placeholder="Click here to search...">
+                        </div>
+                        <div class="d-none d-sm-flex d-lg-none">
+                            <button class="btn btn-outline-primary btn-sm px-3" type="button" data-toggle="modal"
+                                data-target="#search-modal">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="d-flex align-items-center">
+                    <span data-toggle="tooltip" title="You have <b>0</b> new notifications"
+                        data-tooltip-class="tooltip-success" data-trigger="hover" data-html="true"
+                        data-placement="bottom">
+                        <button type="button"
+                            class="btn bg-neutral-success text-success font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded position-relative"
+                            data-toggle="modal" data-target="#modal-notifications">
+                            <span class="badge badge-circle badge-success">New notifications</span>
+                            <i class="far fa-bell"></i>
+                        </button>
+                    </span>
+                    <button
+                        class="btn bg-neutral-danger text-danger font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded popover-custom position-relative"
+                        type="button" data-trigger="click" data-placement="auto"
+                        data-popover-class="popover-secondary popover-custom-wrapper popover-custom-lg"
+                        data-rel="popover-close-outside" data-tip="settings-popover">
+                        <span class="badge badge-circle badge-danger badge-header-alt">Online</span>
+                        <i class="far fa-comment"></i>
+                    </button>
+                    <button type="button" data-trigger="click" data-placement="auto"
+                        data-popover-class="popover-second popover-custom-wrapper popover-custom-lg shadow-lg"
+                        data-rel="popover-close-outside" data-tip="menu-header-popover"
+                        class="btn bg-neutral-first text-first font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded popover-custom">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <div class="user-box ml-2">
+                        <a href="#" data-trigger="click"
+                            data-popover-class="popover-secondary popover-custom-wrapper popover-custom-lg"
+                            data-rel="popover-close-outside" data-tip="account-popover"
+                            class="p-0 d-flex align-items-center popover-custom" data-placement="bottom"
+                            data-boundary="'viewport'">
+                            <div class="d-block p-0 avatar-icon-wrapper">
+                                <span class="badge badge-circle badge-success p-top-a">Online</span>
+                                <div class="avatar-icon rounded">
+                                    <img src="https://i.pinimg.com/564x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="d-none d-md-block pl-2">
+                                <div class="font-weight-bold">
+                                  [[${session.fullname}]]
+                                </div>
+                                <!-- <span class="text-black-50"  th:text="@{${#strings.substring(#strings.replace(#authentication.authorities, '[ROLE_', ''), 0, -1)}}"> -->
+                                 
+                                </span>
+                            </div>
+                          
+                        </a>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>

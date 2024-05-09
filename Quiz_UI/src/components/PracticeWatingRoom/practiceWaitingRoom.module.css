@@ -1,0 +1,110 @@
+.root {
+    padding-top: 64px;
+}
+
+.row {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    column-gap: 10%;
+}
+
+.firstColumn {
+    width: 20%;
+}
+
+.info {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.infoContainer h2 {
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.infoContainer span {
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, .66);
+    font-weight: 500;
+}
+
+
+.info .imgContainer {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.info img {
+    height: 100%;
+}
+
+.owner {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.owner > :not(:last-child) {
+    color: hsla(0, 0%, 100%, .66);
+}
+
+
+.secondColumn {
+    width: 35%;
+}
+
+.progressContainer {
+
+}
+
+.progressContainer svg {
+    font-size: 16px;
+}
+
+.progressContainer .top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progressContainer progress {
+    width: 100%;
+    height: 28px;
+}
+
+.progressContainer .bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.progressContainer h2 {
+    margin-top: 16px;
+    margin-bottom: 32px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.thirdColumn {
+    width: 10%;
+}

@@ -1,0 +1,120 @@
+.root {
+    padding-top: 32px;
+}
+
+.topContainer {
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 16px;
+    position: relative;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.topContainer > *:nth-child(1) {
+    width: calc(var(--right-accuracy) - 60px);
+    background-color: var(--right-primary-color);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    border-radius: 8px;
+    margin-right: 60px;
+}
+
+.topContainer > *:nth-child(1) span {
+    font-size: 16px;
+    color: white;
+}
+
+.topContainer > *:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: var(--right-accuracy);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #000;
+}
+
+.topContainer > *:nth-child(3) {
+    margin-left: 60px;
+    width: calc(var(--wrong-accuracy) - 60px);
+    background-color: var(--wrong-primary-color);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    border-radius: 8px;
+}
+
+.topContainer .left {
+
+}
+
+.topContainer .center {
+
+}
+
+.topContainer .center > *:first-child {
+    font-weight: 700;
+}
+
+.topContainer .center > *:last-child {
+    font-size: 13px;
+}
+
+.topContainer .right {
+
+}
+
+.topContainer .right span {
+    color: white;
+}
+
+.bottomContainer {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 128px;
+}
+
+.tabList {
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabList > * {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    padding: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.tabList > *:hover,
+.tabList > .active {
+    color: white;
+}
+
+.tabList > *:nth-child(1) {
+    border-top-left-radius: 16px;
+}
+
+.tabList > *:nth-child(2) {
+    border-top-right-radius: 16px;
+}

@@ -1,0 +1,335 @@
+.AccountSidebar {
+    margin-bottom: 30px;
+}
+
+.layout-account .header-page h1 {
+    position: relative;
+    text-align: center;
+    font-size: 25px;
+    margin: 0px 0;
+    line-height: initial;
+}
+.layout-account .header-page h1:after {
+    content: "";
+    background: #000;
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 20px auto;
+}
+.AccountSidebar .AccountList ul>li>a {
+    display: block;
+    position: relative;
+    padding: 5px 0px;
+    color: #252a2b;
+}
+.customer-table-wrap .customer-table-bg {
+    background: #fff;
+    padding: 10px;
+}
+.customer-table-wrap {
+    background: #d9edf7;
+    padding: 8px 10px;
+    margin: 30px 0;
+}
+.wrap_inforAccount .title-detail {
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+    position: relative;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 8px;
+}
+input[type="radio"]+label:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.AccountSidebar .AccountList ul>li>a:before {
+    content: "\f192";
+    font-family: "FontAwesome";
+    font-size: 8px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: 2px;
+}
+.AccountSidebar .AccountTitle {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    position: relative;
+}
+.layout-account {
+    margin-bottom: 50px;
+    border-top: 1px solid;
+}
+
+.wrapbox-content-account {
+    margin: 35px auto 50px;
+    padding: 25px 30px 30px;
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.eot?v=316');
+    src: url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.eot?v=316') format('embedded-opentype'), url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.woff2?v=316') format('woff2'), url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.woff?v=316') format('woff'), url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.ttf?v=316') format('truetype'), url('//theme.hstatic.net/200000528965/1001037678/14/fontawesome-webfont.svg?v=316') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.nz {
+    font-weight: 600;
+}
+
+.list-unstyled li>a:hover {
+    text-decoration: none !important;
+}
+
+.btn:hover {
+    color: white !important;
+    background-color: #c7b39a;
+}
+
+.action_bottom {
+    border: 1px solid rgb(5, 5, 5);
+    border-radius: 0.25rem;
+}
+.action_bottom:hover {
+    border: 1px solid #c7b39a;
+    border-radius: 0.25rem;
+}
+
+p.title-detail {
+    margin-bottom: 20px !important;
+}
+
+form#update_customer input[type="text"], input[type="password"]  {
+    width: 40%;
+    height: 45px;
+    border: 1px solid transparent;
+    background: #ededed;
+    color: #221e20;
+    padding: 0 20px;
+}
+
+form#update_customer .large_form {
+    margin-bottom: 18px;
+}
+
+form#update_customer #gender ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#customer_sidebar form#update_customer label.label {
+    display: block;
+    color: #000 !important;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 0px !important;
+    margin-bottom: 0px !important;
+    font-weight: initial;
+    width: 120px;
+    float: left;
+    line-height: 38px;
+}
+
+form#update_customer #gender ul li label {
+    font-weight: initial;
+}
+
+form#update_customer div {
+    display: block !important;
+    width: 100%;
+    clear: both;
+}
+
+form#update_customer #gender ul {
+    margin: 10px 0px 20px;
+    float: left;
+}
+
+form#update_customer .phone {
+    margin-bottom: 10px;
+}
+
+.breadcrumb-section {
+    padding-top: 104px;
+    background-position: center;
+    background-size: cover;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.breadcrumb-content {
+    padding-top: 104px;
+}
+
+.breadcrumb-section .breadcrumb-content {
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 93px;
+    text-align: center;
+
+}
+
+.breadcrumb-section .breadcrumb-content>div {
+    padding: 40px 65px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.breadcrumb-section .breadcrumb-content h2 {
+    font-size: calc(18px + (36 - 18) * ((100vw - 320px) / (1920 - 320)));
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+    margin-top: -2px;
+    line-height: 28px;
+}
+
+.breadcrumb-section .breadcrumb-content .breadcrumb {
+    background-color: transparent;
+    margin-bottom: -7px !important;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+}
+
+.breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item {
+    font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+    color: white;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+    padding-left: 0.5rem;
+}
+
+.breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item a {
+    font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+    color: white;
+}
+
+/* ccs form */
+.account-sign-in {
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-sign-in .title {
+    margin-bottom: 20px;
+}
+
+.account-sign-in .title h3 {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    color: black;
+}
+
+.account-sign-in .login-with h6 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+}
+
+.account-sign-in .login-with .login-social .boxes {
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    justify-content: center;
+    cursor: pointer;
+    background: white;
+
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+}
+
+.account-sign-in .login-with .login-social .boxes h6 {
+    margin-bottom: 0;
+    margin-left: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+
+}
+
+.account-sign-in .divider {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+    z-index: 1;
+}
+
+.account-sign-in .divider h6 {
+    display: inline-block;
+    padding: 5px 15px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    background-color: white;
+}
+
+.account-sign-in .divider:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #dddddd;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.account-sign-in form .form-group label {
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+}
+
+.btn.btn-solid {
+    background-color: #ef3f3e;
+    color: white;
+    padding: 9px 20px;
+    box-shadow: 1px 11px 20px 0px rgba(239, 63, 62, 0.12);
+}
+
+.btn {
+    line-height: 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 0;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.btn.btn-solid.btn-outline {
+    background-color: transparent;
+    border: 1px solid #ef3f3e;
+    color: #ef3f3e;
+}
+
+.btn.btn-solid.btn-outline:hover {
+    color: white;
+    background-color: #ef3f3e;
+}

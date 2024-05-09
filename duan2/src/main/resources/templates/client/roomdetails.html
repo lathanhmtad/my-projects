@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/client/css/mainRoomdetails.css">
+    <link rel="stylesheet" href="/client/css/HeaderBannerFooter.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomDetails</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .breadcrumb-section {
+            padding-top: 104px;
+            background-position: center;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .breadcrumb-content {
+            padding-top: 104px;
+        }
+
+        .breadcrumb-section .breadcrumb-content {
+            height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 93px;
+            text-align: center;
+
+        }
+
+        .breadcrumb-section .breadcrumb-content>div {
+            padding: 40px 65px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .breadcrumb-section .breadcrumb-content h4 {
+            font-size: calc(18px + (36 - 18) * ((100vw - 320px) / (1920 - 320)));
+            color: white;
+            text-transform: uppercase;
+            /* font-weight: 600; */
+            margin-bottom: 16px;
+            margin-top: -2px;
+            line-height: 28px;
+        }
+
+        .breadcrumb-section .breadcrumb-content .breadcrumb {
+            background-color: transparent;
+            margin-bottom: -7px !important;
+            padding: 0.75rem 1rem;
+            justify-content: center;
+        }
+
+        .breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item {
+            font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+            color: white;
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+
+        .breadcrumb-item+.breadcrumb-item {
+            padding-left: 0.5rem;
+        }
+
+        .breadcrumb-section .breadcrumb-content .breadcrumb .breadcrumb-item a {
+            font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+            color: white;
+        }
+
+        /* ccs form */
+        .account-sign-in {
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-sign-in .title {
+            margin-bottom: 20px;
+        }
+
+        .account-sign-in .title h3 {
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+            color: black;
+        }
+
+        .account-sign-in .login-with h6 {
+            text-transform: capitalize;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.03em;
+        }
+
+        .account-sign-in .login-with .login-social .boxes {
+
+            display: flex;
+            align-items: center;
+
+            text-decoration: none;
+            justify-content: center;
+            cursor: pointer;
+            background: white;
+
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+        }
+
+        .account-sign-in .login-with .login-social .boxes h6 {
+            margin-bottom: 0;
+            margin-left: 20px;
+            text-transform: capitalize;
+            font-weight: 600;
+
+        }
+
+        .account-sign-in .divider {
+            text-align: center;
+            position: relative;
+            margin: 20px 0;
+            z-index: 1;
+        }
+
+        .account-sign-in .divider h6 {
+            display: inline-block;
+            padding: 5px 15px;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            background-color: white;
+        }
+
+        .account-sign-in .divider:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: #dddddd;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .account-sign-in form .form-group label {
+            text-transform: capitalize;
+            letter-spacing: 0.03em;
+            font-weight: 400;
+        }
+
+        .btn.btn-solid {
+            background-color: #ef3f3e;
+            color: white;
+            padding: 9px 20px;
+            box-shadow: 1px 11px 20px 0px rgba(239, 63, 62, 0.12);
+        }
+
+        .btn {
+            line-height: 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 0;
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn.btn-solid.btn-outline {
+            background-color: transparent;
+            border: 1px solid #ef3f3e;
+            color: #ef3f3e;
+        }
+
+        .btn.btn-solid.btn-outline:hover {
+            color: white;
+            background-color: #ef3f3e;
+        }
+    </style>
+
+</head>
+
+<body>
+    <th:block th:insert="~{/client/menu}"></th:block>
+    <!-- <th:block  th:insert="~{/client/banner}"></th:block> -->
+    <section class="breadcrumb-section pt-0 bg-size blur-up lazyloaded"
+        style="background-image: url(&quot;/client/images/slide-01.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <div class="breadcrumb-content">
+            <div>
+                <h4>Chi tiết phòng</h4>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Chi tiết phòng</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- <div class="title-breadcrumb">FPT</div> -->
+    </section>
+
+    <section class="main" style="margin-top: 60px;">
+        <div class="container">
+            <div class="main_space"></div>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="room-title">
+                        <h1 class="title-name" th:text="${room.name}"></h1>
+                    </div>
+                    <div class="block_text">
+                        <div class="block_title">
+                            <h2 class="block_title-name">Ảnh phòng</h2>
+                        </div>
+                        <div class="block_content">
+                            <div class="image-roomSingle">
+                                <div class="owl-carousel">
+                                    <div class="owl-item" style="width: 100%;">
+                                        <div class="item" th:each="item : ${room.images}" style="height: 600px;">
+                                            <img th:src="'/images/' + ${item}" alt="No picture">
+                                        </div>
+                                        <!-- <div class="item">
+                                            <img src="/client/images/Bedroom-Apartment-3.jpg" alt="No picture">
+                                        </div>
+                                        <div class="item">
+                                            <img src="/client/images/Bedroom-Boos-Apartment.jpg" alt="No picture">
+                                        </div>
+                                        <div class="item">
+                                            <img src="/client/images/Senior-Deluxe-Room.jpg" alt="No picture">
+                                        </div> -->
+
+                                    </div>
+                                </div>
+                                <div class="small_image_roomSingle">
+                                    <div th:each="image, index : ${room.images}" class="item">
+                                        <a class="button secondary url">
+                                            <img th:src="${'/images/' + image}" alt="No picture"
+                                                th:onclick="'showImage(' + ${index.index} + ')'" />
+                                        </a>
+                                    </div>
+
+                                    <!-- <a class="button secondary url" href="#6062">
+                                        <img src="/client/images/Bedroom-Apartment-5.jpg" alt="No picture"
+                                            onclick="showImage(1)">
+                                    </a>
+                                    <a class="button secondary url" href="#6063">
+                                        <img src="/client/images/Bedroom-Boos-Apartment.jpg" alt="No picture"
+                                            onclick="showImage(2)">
+                                    </a>
+                                    <a class="button secondary url" href="#6064">
+                                        <img src="/client/images/Senior-Deluxe-Room.jpg" alt="No picture"
+                                            onclick="showImage(3)">
+                                    </a>
+                                    <a class="button secondary url" href="#6064">
+                                        <img src="/client/images/Senior-Deluxe-Room.jpg" alt="No picture"
+                                            onclick="showImage(3)">
+                                    </a>
+                                   -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            var currentIndex = 0;
+                            var intervalId;
+
+                            function showImage(index) {
+                                currentIndex = index;
+                                updateSlider();
+                            }
+
+                            function updateSlider() {
+                                var slider = document.querySelector('.owl-carousel .owl-item');
+                                var itemWidth = document.querySelector('.owl-carousel .item').offsetWidth;
+                                slider.style.transform = 'translateX(' + (-currentIndex * itemWidth) + 'px)';
+                            }
+
+                            function startAutoSlide() {
+                                intervalId = setInterval(function () {
+                                    currentIndex = (currentIndex + 1) % 4; // Số 4 là số lượng ảnh
+                                    updateSlider();
+                                }, 3000); // Khoảng thời gian chuyển đổi (đơn vị là mili giây)
+                            }
+
+                            function stopAutoSlide() {
+                                clearInterval(intervalId);
+                            }
+
+                            // Bắt đầu tự động chuyển đổi ảnh khi trang được tải
+                            startAutoSlide();
+                        </script>
+                    </div>
+
+                    <div class="block_text">
+                        <div class="block_title">
+                            <h2 class="block_title-name">Giá phòng / đêm</h2>
+                        </div>
+                        <div class="block_content">
+                            <div style="text-align:justify"
+                                th:text="${#numbers.formatDecimal(room.discountedPrice, 3, 'POINT', 0, 'COMMA') + ' VNĐ'}"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="block_text">
+                        <div class="block_title">
+                            <h2 class="block_title-name">Chi tiết phòng</h2>
+                        </div>
+                        <div class="block_content">
+                            <div style="text-align:justify" th:text="${room.description}"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="nav_room-single">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#home" onclick="openTab('home')">Tổng
+                                    quan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#menu1" onclick="openTab('menu1')">Đặc
+                                    trưng</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane container active" id="home">
+                                <div class="room-single-text ">
+                                    <div class="room-single-text "><strong>Diện tích
+                                            phòng</strong>: &nbsp; [[${room.acreage}]] m<sup>2</sup>&nbsp;&nbsp;<br>
+                                        <strong th:text="${'Số giường : ' + room.quantityBed +' giường'}">Số
+                                            giường:&nbsp;</strong><br>
+                                        <strong>Phòng giành cho
+                                        </strong>: &nbsp; [[${room.capacity}]] người</sup>&nbsp;&nbsp;<br>
+                                        <strong>Loại phòng
+                                        </strong>: &nbsp; [[${room.type}]]</sup>&nbsp;&nbsp;<br>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane container fade" id="menu1">
+                                <div style="text-align: justify;"><strong>Chính sách trẻ em:&nbsp;</strong>Tối đa hai
+                                    trẻ em dưới 6 tuổi được miễn phí lưu trú và ăn sáng (điều kiện áp dụng: lưu trú cùng
+                                    phòng với bố mẹ, không kê giường phụ).<br>
+                                    <strong>Giờ nhận phòng:&nbsp;</strong>Sau 14:00 PM<br>
+                                    <strong>Giờ trả phòng:&nbsp;</strong>Trước 12:00 AM<br>
+                                    <!-- <strong>Trả phòng muộn:&nbsp;</strong>Trước 18:00 PM: 50% tiền phòng
+                                    <div style="margin-left: 80px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Sau
+                                        18:00 PM: 100%
+                                        tiền phòng</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function openTab(tabId) {
+                                $('.nav-link').removeClass('active');
+                                $('.nav-item').removeClass('active');
+                            }
+                        </script>
+                    </div>
+
+                    <div class="block_text">
+                        <div class="block_title">
+                            <h2 class="block_title-name">Tiện ích</h2>
+                        </div>
+                        <div class="block_content">
+                            <table cellpadding="5" cellspacing="5" style="width:100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:33%" th:each="item :${room.allAmenities}"><img alt=""
+                                                src="/client/images/spa.png"
+                                                style="height:35px; width:35px">[[${item.name}]]</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <img alt="" src="/client/images/black-wifi-icon-hi.png" style="width:30px"><br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="main_space-mg30"></div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="reservation">
+                        <div class="reservation_title">
+                            <h5 class="reservation_title-name">
+                                Thông tin đặt phòng
+                            </h5>
+                        </div>
+                        <div class="reservation_form">
+                            <div class="res_checkin">
+                                <div class="res_checkin">
+                                    <form action="/phong-nghi" id="book-room" method="get">
+                                        <input type="text" name="ID" value="1013" hidden="">
+
+                                        <label for="check_in">
+                                            Ngày nhận phòng
+                                        </label>
+                                        <div class="form-control">
+                                            <input type="date" name="CheckIn" class="res_checkin-input" id="checkInAt">
+
+                                        </div>
+
+                                        <label for="check_out">
+                                            Ngày trả phòng
+                                        </label>
+                                        <div class="form-control">
+                                            <input type="date" name="CheckOut" class="res_checkout-input"
+                                                id="checkOutAt">
+
+                                        </div>
+
+
+                                        <button class="button_sb" type="button" onclick="forwardBooking()">Đặt
+                                            Phòng</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reservation_hotel">
+                            <div class="reservation_title">
+                                <h5 class="reservation_title-name">
+                                    Tại sao lại chọn Hotel Luxe
+                                </h5>
+                            </div>
+                            <div class="hotel_content">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-gavel"></i> Tính minh bạch - Không có phí ẩn
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-plane"></i> Tính minh bạch - Không có phí ẩn
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-dollar-sign"></i> Giá tiền hợp lý
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-bed"></i> Phòng sang trọng cho bạn thoải mái
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-user-secret"></i> Hoàn tiền dễ dàng khi đặt phòng trực tuyến
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <th:block th:insert="~{/client/footer}"></th:block>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        init()
+
+        function init() {
+            $('#checkInAt').val(getParameterByName('checkInAt'));
+            $('#checkOutAt').val(getParameterByName('checkOutAt'));
+        }
+
+        function forwardBooking() {
+
+            var checkInAt = $('#checkInAt').val();
+            var checkOutAt = $('#checkOutAt').val();
+
+            var roomId = '[[${room.id}]]';
+
+            if (roomId == null) {
+                Swal.fire({
+                    title: "Thông báo!",
+                    text: "Lỗi vui lòng kiểm tra lại !",
+                    icon: "error"
+                });
+                return;
+            }
+
+            axios.get("/booking/checkRoomAvailable?roomId=" + roomId + "&checkInAt=" + checkInAt + "&checkOutAt=" + checkOutAt)
+                .then(res => {
+
+                    var url = '/booking-room?ID=' + roomId + '&CheckIn=' + checkInAt + '&CheckOut=' + checkOutAt;
+
+                    window.location.href = url;
+                }).catch(error => {
+                    // var message;
+                    // if (error.response) {
+                    //     message = error.response.data.message
+                    // } else {
+                    //     message = "Lỗi vui lòng kiểm tra lại!"
+                    // }
+
+                    // Swal.fire({
+                    //     title: "Thông báo!",
+                    //     text: message,
+                    //     icon: "error"
+                    // });
+                    var url = '/booking-room?ID=' + roomId + '&CheckIn=' + checkInAt + '&CheckOut=' + checkOutAt;
+
+                    window.location.href = url;
+
+                })
+
+
+        }
+
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+
+</body>
+
+</html>

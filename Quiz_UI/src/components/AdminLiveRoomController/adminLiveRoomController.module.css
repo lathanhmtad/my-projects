@@ -1,0 +1,69 @@
+.root {
+    position: relative;
+}
+
+.background {
+    background-image: url("/public/static/night.png");
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 16px 8px;
+    z-index: 999;
+}
+
+.header button span {
+    color: white;
+}
+
+.tmp {
+    height: 72px;
+}
+
+.tmp + * {
+    min-height: calc(100vh - 72px);
+    position: relative;
+}
+
+.headerLeft {
+    width: 33.33333%;
+}
+
+.logoContainer img {
+    height: 24px;
+    width: auto;
+}
+
+.logoContainer {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: 0.2s 0.2s all ease-in-out;
+    cursor: pointer;
+}
+
+.headerCenter {
+    width: 33.33333%;
+}
+
+.headerRight {
+    width: 33.33333%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 8px;
+}

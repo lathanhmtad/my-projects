@@ -1,0 +1,140 @@
+.root {
+
+}
+
+.imageHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.imageHeader img {
+    height: auto;
+    width: 100%;
+}
+
+.share {
+    position: absolute;
+    top: 16px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    background-color: rgba(0, 0, 0, .6);
+    padding: 6px 8px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 2px 2px 1px rgba(0, 0, 0, .05);
+    border-radius: 4px;
+}
+
+.share * {
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+.topFooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.topFooter > * {
+    padding: 1px 6px;
+    color: rgba(41, 42, 58, .66);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+    background: #f2f2f2;
+}
+
+.content {
+    padding: 16px 16px 90px 16px;
+    max-height: calc(100vh - 400px);
+    overflow-y: auto;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(0, 0, 0, .1);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.split * {
+    color: rgba(41, 42, 58, .66);
+}
+
+.avatar img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.grade {
+    padding: 2px 10px;
+    border-radius: 4px;
+    background: #f2f2f2;
+}
+
+.evaluate {
+    color: rgba(41, 42, 58, .66);
+    margin-bottom: 8px;
+}
+
+.evaluate > *:last-child {
+    color: #efa929;
+}
+
+.modelQuestion {
+
+}
+
+.modelQuestion > h3 {
+    color: rgba(41, 42, 58, .66);
+    margin-bottom: 8px;
+}
+
+.modelQuestion > div {
+    background: rgba(0, 0, 0, .05);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 8px;
+}
+
+.modelQuestion > div > span {
+    padding: 4px;
+    font-size: 13px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

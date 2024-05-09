@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/client/css/HeaderBannerFooter.css">
+
+    <link rel="stylesheet" href="/client/css/editProfile.css">
+    <link rel="icon" href="/client/images/logo-hotel-removebg.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>editprofile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <th:block th:insert="~{/client/menu}"></th:block>
+    <section class="breadcrumb-section pt-0 bg-size blur-up lazyloaded"
+        style="background-image: url(&quot;/client/images/slide-01.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <div class="breadcrumb-content">
+            <div>
+                <h2>Thông tin người dùng</h2>
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thông tin người dùng</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- <div class="title-breadcrumb">FPT</div> -->
+    </section>
+    <div class="layout-account">
+        <div class="container">
+            <div class="wrapbox-content-account">
+                <div class="header-page clearfix">
+                    <h1 style="font-weight: 500; ">Tài khoản của bạn </h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-12 sidebar-account">
+
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-12">
+                        <div class="row wrap_content_account">
+                            <div class="col-12 wrap_inforAccount" id="customer_sidebar">
+                                <p class="title-detail" style="font-weight: 600;">Thông tin tài khoản</p>
+                                <form accept-charset="UTF-8" id="update_customer">
+
+                                    <div class="large_form" >
+
+                                        <input type="text" id="id" th:value="${user.id}" hidden>
+                                    </div>
+                                    <div class="phone clearfix large_form ">
+                                        <label class="label phone">Email</label>
+                                        <input autocomplete="false" type="text" name="customer[email]"
+                                            class="text email" th:value="${user.email}" disabled>
+                                    </div>
+
+                                    <div id="last_name" class="clearfix large_form">
+                                        <label class="label">Họ và tên</label>
+                                        <input type="text" th:value="${user.fullname}" id="fullname" required>
+                                        <span style="color: red;" id="errorFullname"></span>
+                                    </div>
+
+                                    <div id="#" class="clearfix large_form">
+                                        <label class="label">Số điện thoại</label>
+                                        <input required type="text" th:value="${user.phone}" id="phone">
+                                        <span style="color: red;" id="errorPhone"></span>
+                                    </div>
+                                    <div id="" class="large_form">
+                                        <label class="label">Mật khẩu</label>
+                                        <input type="password" id="password">
+                                    </div>
+
+                                    <div class="action_bottom" style="width: 104px;">
+                                        <a style="color: rgb(14, 14, 14);" type="button" onclick="updateFrofile()"
+                                            class="btn updateAccount"> Cập nhật</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:insert="~{/client/footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="vendor/bootstrap.min.js"></script>
+<script>
+
+    function updateFrofile() {
+        var id = $('#id').val();
+        var fullname = $('#fullname').val();
+        var phone = $('#phone').val();
+        var password = $('#password').val();
+
+        if (fullname == '') {
+            $('#errorPhone').text("");
+            $('#errorFullname').text("Vui lòng nhập họ và tên!");
+            return;
+        }
+
+        if (phone == '') {
+            $('#errorFullname').text("");
+            $('#errorPhone').text("Vui lòng nhập số điện thoại!");
+            return;
+        }
+
+        var userDto = {
+            id: id,
+            fullname: fullname,
+            phone: phone,
+            password: password
+        }
+
+        axios.put("/admin/user/update/" + id, userDto)
+            .then(res => {
+                $('#errorFullname').text("");
+                $('#errorPhone').text("");
+                Swal.fire({
+                    title: "Thông báo!",
+                    text: res.data,
+                    icon: "success",
+                    didClose: () => {
+                        window.location.href = "/profile";
+                    }
+                });
+            })
+            .catch(error => {
+                console.log(error)
+                var message;
+                if (error.response) {
+                    message = error.response.data.message
+                } else {
+                    message = "Lỗi vui lòng kiểm tra lại!"
+                }
+
+                Swal.fire({
+                    title: "Thông báo!",
+                    text: message,
+                    icon: "error"
+                });
+            })
+    }
+</script>
+
+</html>

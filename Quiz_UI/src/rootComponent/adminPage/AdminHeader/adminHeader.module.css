@@ -1,0 +1,68 @@
+.root {
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 8px;
+}
+
+.container ul {
+    display: flex;
+}
+
+.searchInput {
+    display: flex;
+    border-radius: 0.5rem;
+    background-color: var(--main-bg);
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.searchIcon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12px;
+    margin-right: 8px;
+}
+
+.searchIcon svg {
+    font-size: 20px;
+}
+
+.leftNav {
+    display: flex;
+    width: 100%;
+}
+
+.leftNav input {
+    height: 26px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: var(--main-bg);
+    flex-grow: 1;
+}
+
+.selectContainer select {
+    width: fit-content;
+    background-color: var(--main-bg);
+    border: none;
+    outline: none;
+    border-left: 1px solid var(--text-color-primary);
+    padding-left: 4px;
+}
+
+.rightNav li {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.rightNav a:not(:last-child) {
+    margin-right: 8px;
+}

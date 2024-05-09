@@ -1,0 +1,77 @@
+.root {
+    padding: 1.5rem 1rem 1rem 1rem;
+    background-color: var(--main-bg);
+}
+
+.topPage {
+
+}
+
+.mainPage {
+}
+
+.title {
+    font-weight: 600;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 96px;
+    margin-bottom: 32px;
+}
+
+.inputContainer {
+    display: flex;
+    background-color: white;
+    margin: auto;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    width: 75%;
+    column-gap: 16px;
+}
+
+.inputContainer input {
+    height: 2.5rem;
+    background-color: white;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+}
+
+.inputContainer svg {
+    font-size: 20px;
+}
+
+.subjectImageContainer {
+    width: fit-content;
+    padding: 1px;
+    border: var(--border-dark);
+    border-radius: 50%;
+}
+
+.subjectImage {
+    width: 64px;
+    height: 64px;
+}
+
+.subjectLabel {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.listSubject {
+    width: 60%;
+    margin: 64px auto 32px auto;
+}
+
+.subjectRoot {
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.subjectContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: center;
+}

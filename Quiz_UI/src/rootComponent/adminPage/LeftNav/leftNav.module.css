@@ -1,0 +1,73 @@
+.root {
+    background-color: white;
+    height: 100vh;
+}
+
+.logoSection {
+
+}
+
+.logoSection img {
+    width: 128px;
+    height: 40px;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    margin-left: 12px;
+    margin-top: 8px;
+}
+
+.actionSection {
+    padding: 16px 16px 8px 16px;
+}
+
+.actionSection p {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.loginButton {
+    height: 24px;
+    margin-bottom: 16px;
+}
+
+.loginButton span {
+    font-size: 12px;
+}
+
+.actionSection .createButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.75rem;
+    display: flex;
+}
+
+.iconContainer {
+    margin-left: 1rem;
+    margin-right: 0.75rem;
+}
+
+.menuSection {
+
+}
+
+.itemRoot {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.itemRoot.active {
+    box-shadow: inset -4px 0 0 0 #8854c0;
+    background-color: var(--bg-light-1);
+}
+
+.itemRoot:not(.active):hover {
+    background-color: var(--bg-light-1);
+}
+
+.itemRoot:not(.active) {
+    cursor: pointer;
+}
+

@@ -1,0 +1,237 @@
+.container {
+    max-width: 1300px !important;
+}
+.main_space {
+    width: 100%;
+    height: 60px;
+}
+h1, h2, h3, h4, h5 {
+    font-family: 'Old Standard TT', serif;
+}
+.block_text {
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px -2px #eaeaea;
+    margin-bottom: 30px;
+}
+.block_title h2 {
+    font-weight: 600;
+    border-bottom: 1px solid;
+    border-color: #eaeaea;
+    color: #111;
+    font-size: 16px;
+    margin: 0;
+    padding: 17px 20px;
+}
+.block_content {
+    font-weight: 300;
+    padding: 15px 20px 15px;
+    position: relative;
+    overflow: hidden;
+    font-size: 15px;
+    font-family: Arial;
+}
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+    display: block;
+}
+.owl-carousel {
+    width: 100%;
+    z-index: 1;
+    overflow: hidden
+}
+.owl-carousel, .owl-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}    
+.owl-carousel .owl-stage-outer {
+    position: relative;
+    overflow: hidden;
+}
+.owl-carousel .owl-stage {
+    position: relative;
+    -ms-touch-action: pan-Y;
+    touch-action: manipulation;
+}
+.owl-carousel.owl-drag .owl-item {
+    touch-action: pan-y;
+    user-select: none;
+}
+.owl-carousel .owl-item {
+    min-height: 1px;
+    float: left;
+}
+
+.owl-carousel, .owl-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+}
+.owl-carousel .owl-item {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.owl-carousel .item {
+    min-width: 100%;
+}
+img {
+    max-width: 100%;
+}
+.owl-carousel .owl-stage:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+    display: none;
+}
+.owl-carousel .owl-nav {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px 0;
+    border: 2px solid #eaeaea;
+    border-radius: 8px;
+}
+.owl-nav {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+.owl-carousel .owl-nav button.owl-prev {
+    border-right: 1px solid #eaeaea;
+}
+.owl-carousel .owl-nav button[class*="owl-"] {
+    width: 32px;
+    height: 38px;
+    font-size: 24px;
+    color: #666;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+    background: 0 0;
+    color: inherit;
+    border: none;
+    padding: 0!important;
+    font: inherit;
+}
+.owl-carousel .owl-dot, .owl-carousel .owl-nav .owl-next, .owl-carousel .owl-nav .owl-prev {
+    cursor: pointer;
+    user-select: none;
+}
+.owl-nav button:nth-child(1) {
+    left: 20px;
+}
+.owl-nav button {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+}
+.owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+    display: none;
+}
+.small_image_roomSingle {
+    margin: 20px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.small_image_roomSingle a img {
+    width: 125px;
+    height: 75px;
+}
+.nav_room-single {
+    margin: 0 0 30px 0;
+}
+.nav_room-single ul li a {
+    color: #111;
+}
+.tab-content {
+    border: 1px solid #eaeaea;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 2px 2px -2px #eaeaea;
+    padding: 15px 0;
+}
+.tab-pane {
+    border: none;
+    height: auto;
+    position: relative;
+    left: 0;
+    transform: translateX(0);
+}
+.main_space-mg30 {
+    width: 100%;
+    height: 30px;
+}
+.reservation, .reservation_cart, .reservation_hotel {
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px -2px #eaeaea;
+    padding: 0 20px 30px 20px;
+}
+.reservation_title {
+    border-bottom: 1px solid;
+    border-color: inherit;
+    color: #000;
+    font-size: 16px;
+    margin: 0 -20px 20px;
+    padding: 17px 20px;
+}
+.reservation_title-name {
+    font-weight: 400;
+    margin: 0;
+}
+.reservation_form label {
+    margin: 10px 0;
+    padding-left: 5px;
+}
+.res_checkin .form-control, .res_checkout .form-control {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+.form-control input, .form-control select {
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+}
+.reservation_cart, .reservation_hotel {
+    margin: 20px 0 20px 0;
+}
+.hotel_content ul {
+    font-size: 14px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.hotel_content ul li {
+    margin: 0 0 10px 0;
+}
+.hotel_content ul li i {
+    margin-right: 10px;
+}
+.button_sb {
+    margin: 20px 0 0 0;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 14px 20px;
+    background: #c7b39a;
+    border: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+}

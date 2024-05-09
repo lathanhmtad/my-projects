@@ -1,0 +1,29 @@
+.root {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    --tw-border-opacity: 1;
+    --bg-light-1: rgb(242 242 242 / var(--tw-bg-opacity));
+    --main-bg: rgb(242 242 242 / var(--tw-bg-opacity));
+    --text-color-primary: rgb(34 34 34 / var(--tw-text-opacity));
+    --border-dark: 1px solid rgb(229 229 229 / var(--tw-border-opacity));
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --room-button-dark: hsla(0, 0%, 100%, .2);
+    font-family: Open Sans, sans-serif, Helvetica, Arial, Symbola;
+    color: rgb(34 34 34 / var(--tw-text-opacity));
+}
+
+* {
+    font-size: 14px;
+}
+
+.leftNav {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, .05)) drop-shadow(0 2px 4px rgba(0, 0, 0, .08));
+}
+
+.mainContent {
+    margin-left: 200px;
+}
